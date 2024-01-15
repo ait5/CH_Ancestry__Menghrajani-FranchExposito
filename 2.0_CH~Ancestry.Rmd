@@ -1,0 +1,1559 @@
+---
+title: "CH~Ancestry 2.0"
+author: "Sebastià Franch-Expósito, Ph.D."
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: yes
+    toc_float: true
+    toc_depth: 4
+    theme: sandstone
+    code_folding: show
+params:
+    
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, cache=FALSE,
+                      collapse = TRUE, fig.width = 8, fig.height = 4)
+```
+
+```{r include=FALSE, cache=FALSE}
+library(data.table)
+library(dplyr)
+library(tidyverse)
+library(ggmosaic)
+
+library(ggplot2)
+library(doBy)
+# library(maftools)
+library(ggpubr)
+library(cowplot)
+library(ggforce)
+library(VennDiagram)
+library(kableExtra)
+library(wesanderson)
+library(patchwork)
+library(survival)
+library(survminer)
+library(EnvStats)
+library(magick)
+library(splines)
+```
+
+```{r file-names}
+##### FILES NAMES: (CHECK dates FOR FILES!!!) ----
+## Anonymized patient matrix file:
+ANO_FILE <- params$ANO_FILE
+
+### OTHER files ----
+## Self-reported race/ethnicity:
+SELF_ANCESTRY = params$SELF_ANCESTRY
+## Clinical data (Kelly's paper):
+NATURE_CLINICAL = params$NATURE_CLINICAL
+## Ancestry continous values (by Kanika):
+ANCESTRY_CONTINOUS = params$ANCESTRY_CONTINOUS
+
+### Associations tables names:
+NAME_tbl_SPLINE_main.assoc_by.Ancestry = params$NAME_tbl_SPLINE_main.assoc_by.Ancestry
+NAME_tbl_SPLINE_ch.genes_by.Ancestries = params$NAME_tbl_SPLINE_ch.genes_by.Ancestries
+NAME_tbl_onlyCH_SPLINE_ch.genes_by.Ancestries = params$NAME_tbl_onlyCH_SPLINE_ch.genes_by.Ancestries
+NAME_tbl_SPLINE_ch.genes_by.EUR = params$NAME_tbl_SPLINE_ch.genes_by.EUR
+NAME_tbl_SPLINE_main.assoc_by.Ancestry_EUR = params$NAME_tbl_SPLINE_main.assoc_by.Ancestry_EUR
+```
+
+```{r load-data, cache=TRUE}
+# LOADING FILES ----
+
+## ANO : (data frame ~50k cancer patients) ----
+ano <- read.delim(ANO_FILE, header=T, sep='\t')
+# dim(ano)
+
+df_ano <- ano 
+# df_ano <- ano %>% filter(fully_annotated == 1) # USING ONLY THOSE PATIENTS FULLY ANNOTATED!
+
+patients_in_df_ano = unique(as.character(df_ano$DMP_PATIENT_ID))
+ch.genes.cols <- colnames(df_ano)[grep('ch.DNMT3A',
+                                       colnames(df_ano))[1]:grep('ch.HIST1H3E', colnames(df_ano))[1]]
+MajorCancerTypes_cols <- colnames(df_ano)[grep('Non.Small.Cell.Lung.Cancer',
+                                               colnames(df_ano)):grep('Other.cancer.type', colnames(df_ano))]
+
+
+## OTHER files ----
+## Self-reported race/ethnicity:
+df_self_ancestry <- read.delim(SELF_ANCESTRY, header=T, sep='\t')
+
+## Clinical data (Kelly's paper):
+df_nature_clinical <- read.delim(NATURE_CLINICAL, header=T, sep='\t')
+
+## Ancestry continous values (by Kanika):
+df_ancestry_continous <- read.delim(ANCESTRY_CONTINOUS, header=T, sep='\t')
+
+print('All files are loaded!')
+```
+
+
+
+```{r params}
+###### ###### ###### ###### ###### ###### ###### 
+out_dir <- params$out_dir
+out_dir_by.ch.Gene = params$out_dir_by.ch.Gene
+
+dir_funs = params$dir_funs
+
+COLOR_germ = params$COLOR_germ
+COLOR_ch = params$COLOR_ch
+COLOR_ch_2 = params$COLOR_ch_2
+
+COLOR_plain = params$COLOR_plain
+
+COLOR_min = params$COLOR_min
+COLOR_mid = params$COLOR_mid
+COLOR_max = params$COLOR_max
+
+
+SIZE_TEXT = params$SIZE_TEXT
+or_xlim = params$or_xlim
+or_x.byscale = params$or_x.byscale
+
+## Colors:
+v_colors = params$v_colors
+
+```
+
+```{r}
+df_ano_2 = df_ano %>%
+  mutate(ancestry_label_2 = ifelse(ancestry_label == 'nonASJ-EUR' | ancestry_label == 'ASJ-EUR', 'EUR', ancestry_label)) 
+
+term_ancestry = c('nonASJ.EUR', 'ASJ.EUR', 'ADMIX_OTHER', 'EUR', 'EAS', 'AFR', 'SAS', 'NAM')
+mat_ancestry = as.data.frame(cbind(
+  term_ancestry,
+  tag_ancestry = c('nonASJ.EUR', 'ASJ', 'ADM', 'EUR', 'EAS', 'AFR', 'SAS', 'NAM'),
+  order_ancestry = 1:length(term_ancestry),
+  color_ancestry = c(v_colors[1:length(term_ancestry)])
+))
+
+mat_ancestry = mat_ancestry %>%
+  filter(tag_ancestry %in% c('ADM', 'EUR', 'EAS', 'AFR', 'SAS', 'NAM'))
+
+df_ano_2 = df_ano_2 %>% filter(ancestry_label_2 != "ADMIX_OTHER")
+mat_ancestry = mat_ancestry %>%
+  filter(tag_ancestry %in% c('EUR', 'EAS', 'AFR', 'SAS', 'NAM'))
+```
+
+
+
+
+
+# INTRO
+
+<br>
+Assessing associations between Clonal Hematopoiesis (CH) and the different ancestries inferred from MSK-IMPACT analysis by [Arora K. et al., *Cancer Discov* 2022](https://pubmed.ncbi.nlm.nih.gov/36048199/).
+<br>
+
+As in previous studies on CH in MSKCC, we have annotated **CH as the presence of non-silent CH variants** (tagged as `functional_ch` in the data set):
+```{r eval = FALSE, echo = TRUE}
+functional_ch = ifelse(Variant_Classification %in% c("Frame_Shift_Del", "Frame_Shift_Ins", "In_Frame_Del", "In_Frame_Ins", "Missense_Mutation", "Nonsense_Mutation", "Nonstop_Mutation", "Splice_Site"), 1, 0)
+```
+
+<br>
+<br>
+<br>
+<br>
+
+# RESULTS
+
+## Figure 1. Presence of CH accross different ancestry populations.
+
+```{r out_dir_fig_1}
+out_dir_fig_1 <- paste0(out_dir, "Figure_1/")
+dir.create(out_dir_fig_1)
+```
+
+
+```{r barplot ch}
+## Barplot CH fraction (general)
+source(paste0(dir_funs, 'fun_general.stacked.bp.R'))
+
+data <- df_ano_2 %>% select(functional_ch)
+
+bp_CH_fraction <- fun_general.stacked.bp(
+  data, size_text= SIZE_TEXT, fill_colors=c(COLOR_plain, COLOR_ch),
+  color_color=COLOR_plain, size_color=1.1, color_text=c('black', 'gray85'),
+  text_vars = c('', 'CH'),
+  color_text_vars = c(COLOR_plain, COLOR_ch))
+
+# Export
+NAME <- paste(out_dir_fig_1, 'General_CH.fraction_', Sys.Date(), '.pdf', sep='')
+ggsave(bp_CH_fraction, file=NAME, scale=1, width=5*1.5, height=1.5*1.5, units='cm')
+```
+
+```{r density plots}
+source(paste0(dir_funs, 'fun_density.plot.R'))
+## Density plot (all patients)
+mm = df_ano_2 %>% filter(functional_ch==0 & ch_status == 0)
+dp_all = fun_density.plot(data=mm, x_term='age', x_term_tag='Age',
+                          x_lim=c(0,100),
+                          color_outline='gray50',
+                          color_filling=COLOR_plain,
+                          color_vline_median='gray15') +
+  ggtitle( paste0('Not CH', ' (N=', nrow(mm),')') ) +
+  xlab("")
+
+NAME <- paste(out_dir_fig_1, 'dp_all_', Sys.Date(), '.pdf', sep='')
+ggsave(bp_CH_fraction, file=NAME, scale=1, width=3*1.5, height=1*1.5, units='cm')
+
+## Density plot (CH patients)
+mm = df_ano_2 %>% filter(functional_ch==1)
+dp_ch = fun_density.plot(data=mm, x_term='age', x_term_tag='Age',
+                         x_lim=c(0,100),
+                         color_outline='gray50',
+                         color_filling=COLOR_ch,
+                         color_vline_median='gray15') +
+  ggtitle( paste0('CH', ' (N=', nrow(mm),')') ) +
+  xlab("Age (years)")
+
+NAME <- paste(out_dir_fig_1, 'dp_ch_', Sys.Date(), '.pdf', sep='')
+ggsave(bp_CH_fraction, file=NAME, scale=1, width=3*1.5, height=1*1.5, units='cm')
+```
+
+```{r barplot ch by age}
+## Barplot CH patients by age bin
+source(paste0(dir_funs, 'fun_bp.AgeBin.R'))
+
+data = df_ano_2
+ch.term = 'functional_ch'
+ch.color = COLOR_ch
+age_column = 'age_bin'
+
+bp_AGE = fun_bp.AgeBin(data, size_text= SIZE_TEXT,
+                       ch.term, ch.color, age_column, fill.color = 'ivory3') +
+  theme(axis.title.y = element_text(angle=90))
+# bp_AGE
+
+NAME <- paste0(out_dir_fig_1, 'bp_by.age.bin_CH.v.Age_', Sys.Date(), '.png')
+ggsave(bp_AGE, file=NAME, scale=1, width=12*1.5, height=6*1.5, units='cm')
+```
+
+```{r ch fraction by ancestry}
+## CH fraction by ancestry
+source(paste0(dir_funs, 'fun_CH.rates.by.Ancestry.R'))
+
+data = df_ano_2
+x_term = 'functional_ch'
+x_term_tag = 'CH'
+y_term = 'ancestry_label_2'
+mat_seq_var_bins = mat_ancestry %>%
+  select(term_ancestry, tag_ancestry, order_ancestry)
+
+bp_CHrates_by.ancestries = fun_CH.rates.by.Ancestry(data, x_term, x_term_tag, y_term,
+                                                    mat_seq_var_bins,
+                                                    rate_color=COLOR_ch, rest_color=COLOR_plain,
+                                                    p_y_lim=c(0,100), decreasing=FALSE)
+table_plot <- bp_CHrates_by.ancestries[[2]]
+bp_CHrates_by.ancestries <- bp_CHrates_by.ancestries[[1]]  + coord_flip() +
+  theme(legend.position = "none")
+
+## Export:
+NAME <- paste0(out_dir_fig_1, 'bp_CHrates_by.ancestries_', Sys.Date(), '.pdf')
+ggsave(bp_CHrates_by.ancestries, file=NAME, scale=1, width=12*1.5, height=6*1.5, units='cm')
+# bp_CHrates_by.ancestries
+```
+
+```{r density plots by ancestry}
+## Age density plots by ancestry
+source(paste0(dir_funs, 'fun_density.plot.R'))
+data = df_ano_2
+
+l_p_age = lapply(1:nrow(mat_ancestry), function(t){
+  i = as.character(mat_ancestry$term_ancestry)[t]
+  tag_i = as.character(mat_ancestry$tag_ancestry)[t]
+  
+  mm = data %>% 
+    filter(ancestry_label_2 == i) %>% 
+    filter(functional_ch == 0 & ch_status == 0)
+  v_median = median(as.numeric(as.character(mm$age)), na.rm=T)
+  n_tag = nrow(mm)
+  
+  dp = fun_density.plot(data=mm, x_term='age', x_term_tag='Age',
+                        x_lim=c(0,100),
+                        color_outline='gray50',
+                        color_filling=COLOR_plain,
+                        color_vline_median='gray15') +
+    ggtitle( paste0(tag_i, ' (N=', n_tag,')') ) +
+    theme(plot.margin=unit(c(0,0,0,0), 'cm')) +
+    xlab("Age (years)")
+  if (t != nrow(mat_ancestry)){
+    dp = dp + rremove('x.text') + rremove('x.ticks') + rremove('xlab') +
+      theme(plot.margin=unit(c(0,0,0.5,0), 'cm'))
+  }
+  dp
+})
+
+# N_ROW = ceiling(length(l_p_age)/3)
+# N_COL = ceiling(length(l_p_age)/3)
+N_ROW = nrow(mat_ancestry)
+N_COL = 1
+p_all_ages = ggarrange(plotlist = l_p_age, ncol=N_COL,nrow=N_ROW)
+
+## Exporting:
+NAME <- paste(out_dir_fig_1, 'densityPlot_Age_by.ancestries_', Sys.Date(), '.pdf', sep='')
+ggsave(p_all_ages, file=NAME, scale=0.8, width=8, height=80, units='cm')
+```
+
+```{r density plots by ancestry in ch}
+## Age density plots by ancestry IN CH
+source(paste0(dir_funs, 'fun_density.plot.R'))
+data = df_ano_2 %>% filter(functional_ch == 1)
+
+l_p_age = lapply(1:nrow(mat_ancestry), function(t){
+  i = as.character(mat_ancestry$term_ancestry)[t]
+  tag_i = as.character(mat_ancestry$tag_ancestry)[t]
+  
+  mm = data %>% 
+    filter(ancestry_label_2 == i)
+  v_median = median(as.numeric(as.character(mm$age)), na.rm=T)
+  n_tag = nrow(mm)
+  
+  dp = fun_density.plot(data=mm, x_term='age', x_term_tag='Age',
+                        x_lim=c(0,100),
+                        color_outline='gray50',
+                        color_filling=COLOR_ch,
+                        color_vline_median='gray15') +
+    ggtitle( paste0(tag_i, ' (N=', n_tag,')') ) +
+    theme(plot.margin=unit(c(0,0,0,0), 'cm')) +
+    xlab("Age (years)")
+  if (t != nrow(mat_ancestry)){
+    dp = dp + rremove('x.text') + rremove('x.ticks') + rremove('xlab') +
+      theme(plot.margin=unit(c(0,0,0.5,0), 'cm'))
+  }
+  dp
+})
+
+# N_ROW = ceiling(length(l_p_age)/3)
+# N_COL = ceiling(length(l_p_age)/3)
+N_ROW = nrow(mat_ancestry)
+N_COL = 1
+p_all_ages_CH = ggarrange(plotlist = l_p_age, ncol=N_COL,nrow=N_ROW)
+
+## Exporting:
+NAME <- paste(out_dir_fig_1, 'CH_densityPlot_Age_by.ancestries_', Sys.Date(), '.pdf', sep='')
+ggsave(p_all_ages_CH, file=NAME, scale=0.8, width=8, height=80, units='cm')
+```
+
+```{r CH~Ancestry association forest plot }
+source(paste0(dir_funs, 'fun_odds.ratio.by.Ancestry.R'))
+
+data <- read.delim(NAME_tbl_SPLINE_main.assoc_by.Ancestry)
+
+## Plot by ancestry
+DEPENDENT = 'functional'
+DEPENDENT_tag = 'CH'
+size_text=SIZE_TEXT-1
+color_p= COLOR_ch
+odds_limits=or_xlim
+by_scale=or_x.byscale
+
+p_dependent_by.Ancestry_odds.ratio_SPLINE = fun_odds.ratio.by.Ancestry(data, DEPENDENT,
+                                                                       size_text, color_p, odds_limits, by_scale)
+
+table_odds_SPLINE = p_dependent_by.Ancestry_odds.ratio_SPLINE[[2]]
+p_dependent_by.Ancestry_odds.ratio_SPLINE = p_dependent_by.Ancestry_odds.ratio_SPLINE[[1]] +
+  ggtitle(DEPENDENT_tag)
+v_confounders_glm = v_confounders_glm[-which(v_confounders_glm=='age')]
+
+p_dependent_by.Ancestry_odds.ratio_SPLINE = p_dependent_by.Ancestry_odds.ratio_SPLINE +
+  ggtitle(paste0('CH ~ Ancestry'),
+          subtitle = paste0('glm(CH ~ Ancestry + ns(Age,3) + ',
+                            paste(v_confounders_glm, collapse=' + '), ')')) +
+  theme(plot.subtitle=element_text(size=7))
+# p_dependent_by.Ancestry_odds.ratio_SPLINE
+
+## Export
+NAME <- paste(out_dir_fig_1, 'ch~ancestry_forest_plot_', Sys.Date(), '.pdf', sep='')
+ggsave(p_dependent_by.Ancestry_odds.ratio_SPLINE, file=NAME, scale=1, width=5*1.5, height=6*1.5, units='cm')
+```
+
+
+```{r heatmap ch.GENE ~ Ancestry association plot}
+source(paste0(dir_funs, 'fun_ht.ch.Gene.v.Ancestry_2.0.R'))
+
+v_dependents <- rownames(df_ano_2 %>%
+                           select(all_of(ch.genes.cols)) %>%
+                           apply(2, sum) %>% sort(decreasing=T) %>%
+                           as.data.frame() %>% slice(1:10)) 
+
+mat_confounding = mat_ancestry %>%
+  select(term_ancestry, order_ancestry, tag_ancestry)
+ref_label = 'EUR'
+
+x_file <- NAME_tbl_SPLINE_ch.genes_by.Ancestries
+
+v_conditions=mat_ancestry$term_ancestry
+ch.genes= v_dependents
+fill_colors=c("#97A7A7", COLOR_mid, COLOR_max)
+text_color='gray1'
+# n_range=or_xlim[2]
+n_range=1.5
+test_type='glm'
+x.text_angle=30
+add_numbers=TRUE
+
+HT_plot_spline <-fun_ht.ch.Gene.v.Ancestry_2.0(x_file, v_conditions, ch.genes,
+                                               fill_colors,
+                                               text_color,
+                                               n_range,
+                                               x.text_angle, add_numbers)
+
+table_plot_spline = HT_plot_spline[['TABLE_plot']]
+ht_ch.Gene.v.Ancestry_spline = HT_plot_spline[['PLOT']] 
+
+# ht_ch.Gene.v.Ancestry_spline
+
+## Export:
+NAME <- paste0(out_dir_fig_1, 'ht_ch.Gene.v.Ancestry_spline_', Sys.Date(), '.pdf')
+ggsave(ht_ch.Gene.v.Ancestry_spline, file=NAME, scale=1, width=12*1.5, height=6*1.5, units='cm')
+
+NAME <- paste(out_dir_fig_1, 'ht_ch.Gene.v.Ancestry__SPLINE', Sys.Date(), '.tsv', sep='')
+write.table(table_plot_spline, NAME, col.names=T, row.names=F, quote=F, sep='\t')
+
+```
+
+```{r only CH - heatmap ch.GENE ~ Ancestry association plot}
+source(paste0(dir_funs, 'fun_ht.ch.Gene.v.Ancestry_2.0.R'))
+
+v_dependents <- rownames(df_ano_2 %>%
+                           select(all_of(ch.genes.cols)) %>%
+                           apply(2, sum) %>% sort(decreasing=T) %>%
+                           as.data.frame() %>% slice(1:10)) 
+
+mat_confounding = mat_ancestry %>%
+  select(term_ancestry, order_ancestry, tag_ancestry)
+ref_label = 'EUR'
+
+x_file <- NAME_tbl_onlyCH_SPLINE_ch.genes_by.Ancestries
+
+v_conditions=mat_ancestry$term_ancestry
+ch.genes= v_dependents
+fill_colors=c("#97A7A7", COLOR_mid, COLOR_max)
+text_color='gray1'
+# n_range=or_xlim[2]
+n_range=1.5
+test_type='glm'
+x.text_angle=30
+add_numbers=TRUE
+
+onlyCH_HT_plot_spline <-fun_ht.ch.Gene.v.Ancestry_2.0(x_file, v_conditions, ch.genes,
+                                                      fill_colors,
+                                                      text_color,
+                                                      n_range,
+                                                      x.text_angle, add_numbers)
+
+onlyCH_table_plot_spline =  onlyCH_HT_plot_spline[['TABLE_plot']]
+onlyCH_ht_ch.Gene.v.Ancestry_spline =  onlyCH_HT_plot_spline[['PLOT']] 
+
+# onlyCH_ht_ch.Gene.v.Ancestry_spline
+
+## Export:
+NAME <- paste0(out_dir_fig_1, 'onlyCH_ht_ch.Gene.v.Ancestry_spline_', Sys.Date(), '.pdf')
+ggsave(onlyCH_ht_ch.Gene.v.Ancestry_spline, file=NAME, scale=1, width=12*1.5, height=6*1.5, units='cm')
+
+NAME <- paste(out_dir_fig_1, ' onlyCH_ht_ch.Gene.v.Ancestry__SPLINE', Sys.Date(), '.tsv', sep='')
+write.table(onlyCH_table_plot_spline, NAME, col.names=T, row.names=F, quote=F, sep='\t')
+
+```
+
+
+
+
+<!-- ```{r Figure 1, fig.width=15, fig.height=10} -->
+<!-- ## A -->
+<!-- p_up_left = ggarrange('', bp_CH_fraction, '', -->
+<!--                       ncol=1, nrow=3, heights =c(10,50,35) ) -->
+<!-- p_up_right = ggarrange('', dp_all, '', dp_ch, '', -->
+<!--                        ncol=1, nrow=5, heights =c(5,40,2,40,5)) -->
+<!-- p_up = ggarrange(p_up_left, p_up_right, ncol=2, nrow=1, widths = c(60,40), -->
+<!--                  labels=c('', 'C'), -->
+<!--                  font.label = list(size = 14, face = "bold", color ="black")) -->
+<!-- p_low = ggarrange('', bp_AGE, '', -->
+<!--                   ncol=3, nrow=1, widths = c(5,85,10) ) -->
+<!-- p_A = ggarrange(p_up, p_low, ncol=1, nrow=2, widths = c(50,50), -->
+<!--                 labels=c('A', 'B'), -->
+<!--                 font.label = list(size = 14, face = "bold", color ="black")) -->
+
+<!-- ## B -->
+<!-- p_B = ggarrange(bp_CHrates_by.ancestries + theme(plot.margin=unit(c(0.5,0.5,0.2,0.5), 'cm')), -->
+<!--                 p_all_ages + theme(plot.margin=unit(c(0.80,0.1,0.5,0.5), 'cm')), -->
+<!--                 p_all_ages_CH + theme(plot.margin=unit(c(0.80,0.5,0.5,0.1), 'cm')), -->
+<!--                 ncol=3, nrow=1, widths = c(50,25,25), -->
+<!--                 labels=c('D', ''), -->
+<!--                 font.label = list(size = 14, face = "bold", color ="black")) -->
+
+
+<!-- p_upper = ggarrange(p_A, p_B,  -->
+<!--                     ncol=2, nrow=1, widths = c(40,60)) -->
+
+<!-- ht_ch.Gene.v.Ancestry_spline = ht_ch.Gene.v.Ancestry_spline + -->
+<!--   theme(plot.margin=unit(c(0.2,0.5,2,0.5), 'cm')) -->
+<!-- p_lower = ggarrange('', p_dependent_by.Ancestry_odds.ratio_SPLINE + -->
+<!--                       ggtitle('CH ~ Ancestry',subtitle = '') + -->
+<!--                       theme(plot.margin=unit(c(0.5,0.5,0.5,0.5), 'cm'), -->
+<!--                             title = element_text(size=SIZE_TEXT*4)), '', -->
+<!--                     # ht_ch.Gene.v.Ancestry_spline + -->
+<!--                     #   theme(plot.margin=unit(c(0,0.5,0.75,0.2), 'cm')), -->
+<!--                     bp_ch.genes_in_ch + -->
+<!--                       theme(plot.margin=unit(c(0.5,3,0.5,0.5), 'cm')), -->
+<!--                     ncol=4, nrow=1, widths = c(5,30,5,55), -->
+<!--                     labels=c('E','', '','F'), -->
+<!--                     font.label = list(size = 14, face = "bold", color ="black")) -->
+
+<!-- p_Fig1 = ggarrange(p_upper, '', p_lower, ncol=1, nrow=3, heights = c(55,5,45)) -->
+<!-- p_Fig1 -->
+
+<!-- ## Export -->
+<!-- NAME <- paste(out_dir_fig_1, 'Figure_1_', Sys.Date(), '.pdf', sep='') -->
+<!-- ggsave(p_Fig1  + bgcolor("white") , file=NAME, scale=1, width=15*2.8, height=10*2.8, units='cm') -->
+<!-- ``` -->
+
+
+```{r Figure 1, fig.width=15, fig.height=10}
+## A
+p_A = ggarrange('', bp_CH_fraction, '',
+                ncol=1, nrow=3, heights =c(30,40,30) )
+p_B = ggarrange('', bp_AGE, '',
+                ncol=1, nrow=3, heights = c(10,85,5) )
+p_C = ggarrange('', dp_all, '', dp_ch, '',
+                ncol=1, nrow=5, heights =c(10,36,2,39,10))
+
+
+p_upper = ggarrange(p_A, p_B, p_C, '',
+                    ncol=4, nrow=1, widths = c(30,40,28,2),
+                    labels=c('A','B','C'),
+                    font.label = list(size = 14, face = "bold", color ="black"))
+
+p_D = ggarrange(bp_CHrates_by.ancestries + theme(plot.margin=unit(c(0.5,0,0.2,0.5), 'cm')), 
+                p_all_ages + theme(plot.margin=unit(c(0.80,0.1,0.5,0.1), 'cm')), 
+                p_all_ages_CH + theme(plot.margin=unit(c(0.80,0.1,0.5,0.1), 'cm')), 
+                ncol=3, nrow=1, widths = c(50,25,25),
+                labels=c('D', ''),
+                font.label = list(size = 14, face = "bold", color ="black"))
+
+p_lower = ggarrange(p_D,
+                    p_dependent_by.Ancestry_odds.ratio_SPLINE +
+                      ggtitle('CH ~ Ancestry',subtitle = '') +
+                      theme(plot.margin=unit(c(0.5,0.5,0.5,0.5), 'cm'),
+                            title = element_text(size=SIZE_TEXT*4)),
+                    ncol=2, nrow=1, widths = c(65,35),
+                    labels=c('D','E'),
+                    font.label = list(size = 14, face = "bold", color ="black"))
+
+p_Fig1 = ggarrange(p_upper,
+                   p_lower,
+                   ncol=1, nrow=2, heights = c(45,55))
+p_Fig1
+
+## Export
+NAME <- paste(out_dir_fig_1, 'Figure_1_', Sys.Date(), '.pdf', sep='')
+ggsave(p_Fig1  + bgcolor("white") , file=NAME, scale=1, width=15*2.8, height=10*2.8, units='cm')
+```
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+## Figure 2. Breaking up EUR population: non-ASJ vs ASJ.
+
+```{r out_dir_fig_2}
+out_dir_fig_2 <- paste0(out_dir, "Figure_2/")
+dir.create(out_dir_fig_2)
+```
+
+
+```{r bp_ASJ_nonASJ}
+data2 <- df_ano_2 %>%
+  mutate(EUR_sub = ifelse(ancestry_label == 'ASJ-EUR', 'ASJ',
+                          ifelse(ancestry_label == 'nonASJ-EUR', 'non-ASJ', ancestry_label))) %>%
+  filter(EUR_sub == 'ASJ' | EUR_sub == 'non-ASJ') %>%
+  mutate(EUR_sub_bin = ifelse(EUR_sub == 'ASJ', 1, 0)) %>% select(EUR_sub_bin)
+
+size_text= SIZE_TEXT
+fill_colors=c('cornsilk3', 'orange4')
+color_color='gray'
+size_color=1.1
+color_text=c('black', 'gray85')
+text_vars = c('not ASJ', 'ASJ')
+color_text_vars = c('gray', COLOR_ch)
+
+m0 <- data2 %>% table %>%
+  as.data.frame
+colnames(m0) <- c('Var1', 'Freq')
+m0$y <- 'EUR'
+m0$rates <- m0$Freq/sum(m0$Freq)
+m0$text <- paste(as.character(m0$Freq), '  \n(', round(m0$rates*100,1), '%)', sep='')
+m0$text2 = text_vars
+
+df <- m0
+df$order <- 1:nrow(df)
+colors <- fill_colors
+names(colors) <- c(0,1)
+
+bp_ASJ_nonASJ <- ggplot(data=df, aes(x=y, y=rates, fill=Var1)) +
+  geom_bar(stat="identity", position='stack',
+           # color=color_color,
+           size=size_color) + # Stacking bars
+  theme_bw() +
+  theme(panel.border = element_blank(),
+        axis.line = element_line('gray'),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.text.x=element_text(angle=0, hjust=0.5, size=SIZE_TEXT*3)
+  ) + ylab('% patients') + xlab('') +
+  geom_text(df, mapping=aes(y=rates,label=text),
+            color=color_text, angle=0,
+            size=size_text,position = position_stack(vjust=0.5)) +
+  scale_fill_manual(name='', values=colors, labels=text_vars)
+# bp_ASJ_nonASJ
+
+# Export:
+NAME <- paste0(out_dir_fig_2, 'bp_ASJ_nonASJ_', Sys.Date(), '.pdf')
+ggsave(bp_ASJ_nonASJ, file=NAME, scale=1, width=5*1.5, height=10*1.5, units='cm')
+```
+
+
+```{r box plot CH rates by EUR}
+source(paste0(dir_funs, 'fun_CH.rates.by.Ancestry.R'))
+
+data = df_ano_2 %>%
+  mutate(EUR_sub = ifelse(ancestry_label == 'ASJ-EUR', 'ASJ',
+                          ifelse(ancestry_label == 'nonASJ-EUR', 'non-ASJ', ancestry_label))) %>%
+  filter(EUR_sub == 'ASJ' | EUR_sub == 'non-ASJ') %>%
+  select(EUR_sub, functional_ch)
+
+x_term = 'functional_ch'
+x_term_tag = 'CH'
+y_term = 'EUR_sub'
+mat_seq_var_bins = as.data.frame(cbind(
+  term_ancestry = c('non-ASJ', 'ASJ'),
+  tag_ancestry = c('non-ASJ', 'ASJ'),
+  order_ancestry = c(1,2)
+))
+
+bp_ch.rates_by.EUR = fun_CH.rates.by.Ancestry(data, x_term, x_term_tag, y_term,
+                                              mat_seq_var_bins,
+                                              rate_color=COLOR_ch, rest_color='cornsilk3',
+                                              p_y_lim=c(0,100), decreasing=TRUE)
+
+table_plot <- bp_ch.rates_by.EUR[[2]]
+bp_ch.rates_by.EUR <- bp_ch.rates_by.EUR[[1]] + coord_flip() +
+  xlab('EUR')
+# bp_ch.rates_by.EUR
+
+# Export
+NAME <- paste(out_dir_fig_2, 'bp_ch.rates_by.EUR_', Sys.Date(), '.pdf', sep='')
+ggsave(bp_ch.rates_by.EUR, file=NAME, scale=1, width=5*1.5, height=3*1.5, units='cm')
+```
+
+
+
+```{r CH~EUR association forest plot}
+## CH~EUR association forest plot (glm model with spline for age)
+source(paste0(dir_funs, 'fun_odds.ratio.by.EUR.R'))
+
+data <- read.delim(NAME_tbl_SPLINE_main.assoc_by.Ancestry_EUR)
+
+## Plot by ancestry
+DEPENDENT = 'functional'
+DEPENDENT_tag = 'CH'
+size_text=SIZE_TEXT-1
+color_p= COLOR_ch
+odds_limits=or_xlim
+by_scale=or_x.byscale
+
+p_dependent_by.EUR_odds.ratio_SPLINE = fun_odds.ratio.by.EUR(data, DEPENDENT,
+                                                             size_text, color_p, odds_limits, by_scale)
+
+table_odds_SPLINE = p_dependent_by.EUR_odds.ratio_SPLINE[[2]]
+p_dependent_by.EUR_odds.ratio_SPLINE = p_dependent_by.EUR_odds.ratio_SPLINE[[1]] +
+  ggtitle(DEPENDENT_tag)
+v_confounders_glm = v_confounders_glm[-which(v_confounders_glm=='age')]
+
+p_dependent_by.EUR_odds.ratio_SPLINE = p_dependent_by.EUR_odds.ratio_SPLINE +
+  ggtitle(paste0('CH ~ Ancestry'),
+          subtitle = paste0('glm(CH ~ Ancestry + ns(Age,3) + ',
+                            paste(v_confounders_glm, collapse=' + '), ')')) +
+  theme(plot.subtitle=element_text(size=7))
+# p_dependent_by.EUR_odds.ratio_SPLINE
+
+# Export
+NAME <- paste(out_dir_fig_2, 'ch_EUR_assoc_forest_plot_', Sys.Date(), '.pdf', sep='')
+ggsave(p_dependent_by.EUR_odds.ratio_SPLINE, file=NAME, scale=1, width=5*1.5, height=3*1.5, units='cm')
+```
+
+
+
+<!-- # ```{r} -->
+<!-- # source(paste0(dir_funs, 'fun_ht.ch.Gene.v.Ancestry_2.0.R')) -->
+<!-- #  -->
+<!-- # x_file= paste0(out_dir_by.ch.Gene, 'SPLINE_ch.genes_by.EUR__', -->
+<!-- #                Sys.Date(), -->
+<!-- #                '.tsv') -->
+<!-- # v_conditions=mat_ancestry$term_ancestry -->
+<!-- # ch.genes= v_dependents -->
+<!-- # fill_colors=c(COLOR_min, COLOR_mid, COLOR_max) -->
+<!-- # text_color='gray1' -->
+<!-- # n_range=or_xlim[2] -->
+<!-- # test_type='glm' -->
+<!-- # x.text_angle=30 -->
+<!-- # add_numbers=TRUE -->
+<!-- #  -->
+<!-- # HT_plot_spline <-fun_ht.ch.Gene.v.Ancestry_2.0(x_file, v_conditions, ch.genes, -->
+<!-- #                                fill_colors, -->
+<!-- #                                text_color, -->
+<!-- #                                n_range, -->
+<!-- #                                x.text_angle, add_numbers) -->
+<!-- #  -->
+<!-- # table_plot_spline = HT_plot_spline[['TABLE_plot']] -->
+<!-- # ht_ch.Gene.v.EUR_spline = HT_plot_spline[['PLOT']]  -->
+<!-- # # ht_ch.Gene.v.EUR_spline -->
+<!-- #  -->
+<!-- # ## Export: -->
+<!-- #   NAME <- paste(out_dir_by.ch.Gene, 'ht_ch.Gene.v.EUR__SPLINE', Sys.Date(), '.png', sep='') -->
+<!-- #   ggsave(ht_ch.Gene.v.Ancestry_spline, file=NAME, scale=1, width=12, height=12, units='cm') -->
+<!-- #    -->
+<!-- #   NAME <- paste(out_dir_by.ch.Gene, 'ht_ch.Gene.v.EUR__SPLINE', Sys.Date(), '.tsv', sep='') -->
+<!-- #   write.table(table_plot_spline, NAME, col.names=T, row.names=F, quote=F, sep='\t') -->
+<!-- # ``` -->
+
+
+```{r volcano plot ch.GENE presence ASJ vs not-ASJ}
+source(paste0(dir_funs, 'fun_volcano_plot.R'))
+
+x_file <- NAME_tbl_SPLINE_ch.genes_by.EUR
+
+fill_colors=c(COLOR_min, 'cornsilk3', COLOR_max)
+text_color='gray1'
+n_range=or_xlim[2]
+de_value=0.2
+n_line_pval = 0.05
+
+p_volcano = fun_volcano_plot(x_file,
+                             fill_colors,
+                             text_color,
+                             n_range,
+                             de_value,
+                             n_line_pval,
+                             genes_to_label='')
+table_volcano <- p_volcano[[2]]
+p_volcano <- p_volcano[[1]]
+# p_volcano
+
+# Export
+NAME <- paste(out_dir_fig_2, 'p_volcano_', Sys.Date(), '.pdf', sep='')
+ggsave(p_volcano, file=NAME, scale=1, width=5.5*1.5, height=6*1.5, units='cm')
+
+```
+
+
+
+```{r figure-two, fig.width=15, fig.height=10}
+
+p_B <- ggarrange(bp_ch.rates_by.EUR,
+                 p_dependent_by.EUR_odds.ratio_SPLINE + ggtitle('CH ~ Ancestry',subtitle = '') + theme(plot.margin=unit(c(0.5,3,0.5,0), 'cm')),
+                 ncol=1, nrow=2, widths = c(50, 50) )
+p_mid = ggarrange(bp_ASJ_nonASJ + theme(plot.margin=unit(c(0.5, 0, 0.5, 0.5), 'cm')),
+                  p_B + theme(plot.margin=unit(c(0.5, 0.5, 0.5, 0.5), 'cm')),
+                  p_volcano + theme(plot.margin=unit(c(0.5, 0.5, 0.5, 0.5), 'cm')),
+                  ncol=3, nrow=1, widths = c(20, 40, 40),
+                  labels=c('A', 'B', 'C'),
+                  font.label = list(size = 14, face = "bold", color ="black"))
+
+
+
+p_Fig2 = ggarrange('', p_mid, '',
+                   ncol=1, nrow=3, heights = c(25, 50, 25))
+p_Fig2
+
+## Export
+NAME <- paste(out_dir_fig_2, 'Figure_2_', Sys.Date(), '.png', sep='')
+ggsave(p_Fig2  + bgcolor("white") , file=NAME, scale=1, width=15*2.8, height=10*2.8, units='cm')
+```
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+# Supplementary Figures:
+
+```{r out_dir_fig_supp}
+out_dir_fig_supp <- paste0(out_dir, "Supp_Figures/")
+dir.create(out_dir_fig_supp)
+```
+
+## Supplementary Figure: CH is negatively associated with self-reported Hispanic population
+```{r}
+## Merging extra info with df_ano:
+cols_int_nature = c('ind_anychemo', 'pct_cytotoxic_therapy', 'XRT',
+                    colnames(df_nature_clinical)[grep('con_', colnames(df_nature_clinical))])
+cols_int_ancestry_continous = c('ASJ_bin', 'AFR_con', 'EAS_con', 'EUR_con', 'NAM_con', 'SAS_con', 'num_nonref_asj_markers')
+
+df_ano_3 = df_ano %>%
+  left_join(df_self_ancestry %>% select(DMP_PATIENT_ID, RACE, ETHNICITY), by='DMP_PATIENT_ID') %>%
+  left_join(df_nature_clinical %>%
+              select( DMP_PATIENT_ID, all_of(cols_int_nature) ), by='DMP_PATIENT_ID') %>%
+  left_join(df_ancestry_continous %>% 
+              select( DMP_PATIENT_ID, all_of(cols_int_ancestry_continous) ), by='DMP_PATIENT_ID') %>% 
+  distinct()
+```
+
+
+
+```{r}
+# df_ano_3 %>% distinct(DMP_PATIENT_ID, ETHNICITY) %>% count(ETHNICITY)
+# 
+# df_ano_3 %>%
+#   select(ancestry_label, ETHNICITY) %>% table
+```
+
+
+```{r}
+DEPENDENT = 'functional_ch'
+
+ETHNICITY = c('HISPANIC OR LATINO', 'NOT HISPANIC', 'UNKNOWN')
+new_ETHNICITY = c('Hispanic\n| Latinx', 'Not', 'Unknown')
+order_condition = c('__2', '__1', '__3')
+mat_condition = as.data.frame(cbind(ETHNICITY, new_ETHNICITY, order_condition))
+
+data = df_ano_3 %>%
+  mutate(ETHNICITY = ifelse(is.na(ETHNICITY), "UNKNOWN", ETHNICITY)) %>% 
+  left_join(mat_condition, by='ETHNICITY') %>%
+  arrange(order_condition)
+
+CONDITION = 'order_condition'
+CONDITION_tag_vector = unique(as.character(data$new_ETHNICITY))
+v_confounders_glm = c('age', 'Sex', 'smoking_bin', 'binary_therapy')
+
+data = data %>%
+  select(all_of(DEPENDENT), all_of(CONDITION), all_of(v_confounders_glm))
+
+Glm.test = glm(data, family = binomial(link=logit))
+
+b_multi <- broom::tidy(Glm.test, exponentiate = T, conf.int=T) %>% as.data.frame %>%
+  select(term, estimate, p.value, conf.low, conf.high)
+
+b_multi_2 = b_multi %>%
+  select(term, estimate, p.value, conf.low, conf.high) %>%
+  filter(grepl('order_condition__', term)) %>%
+  mutate(term=gsub('order_condition', '', term)) %>%
+  mutate(order_condition = term) %>%
+  left_join(mat_condition) %>%
+  select(-c(term, order_condition, order_condition, ETHNICITY))
+b_multi_2 = as.data.frame(rbind(
+  c(1,1,1,1, 'Not'),
+  b_multi_2
+))
+colnames(b_multi_2) = c('glm.odds.ratio', 'glm.p.value', 'glm.conf.low', 'glm.conf.high', 'Condition_tags')
+# b_multi_2
+
+```
+
+
+```{r}
+df_ano_3 %>%
+  mutate(ETHNICITY = ifelse(is.na(ETHNICITY), "UNKNOWN", ETHNICITY)) %>% 
+  select(ETHNICITY) %>% table(useNA="always")
+(df_ano_3 %>%
+    mutate(ETHNICITY = ifelse(is.na(ETHNICITY), "UNKNOWN", ETHNICITY)) %>% 
+    select(ETHNICITY) %>% table(useNA="always") / nrow(df_ano_3) )* 100
+```
+
+```{r}
+## Plot:
+source(paste0(dir_funs, 'fun_odds.ratio.by.Ancestry.continuous.R'))
+
+
+size_text=SIZE_TEXT-1
+color_p= COLOR_ch
+odds_limits=c(-0.5,0.5)
+by_scale=0.15
+
+p_or = fun_odds.ratio.by.Ancestry.continuous(b_multi_2,
+                                             size_text, color_p, odds_limits, by_scale)
+
+table_odds = p_or[[2]]
+p_or = p_or[[1]] +
+  theme(plot.subtitle=element_text(size=7)) + 
+  ggtitle('CH ~ ETHNICITY',
+          subtitle = 'glm(CH ~ ETHNICITY + age + Sex + smoking_bin + binary_therapy)')
+p_or
+
+
+## Export
+NAME <- paste(out_dir_fig_supp, 'supp_fig_1_', Sys.Date(), '.png', sep='')
+ggsave(p_or, file=NAME, scale=1, width=15*2.8, height=10*2.8, units='cm')
+```
+
+<br><br>
+
+## Supplementary Figure: CH-mutated genes by ancestry (in CH patients)
+
+```{r fun_ch_mutated_genes_bp_by_ancestry}
+source(paste0(dir_funs, 'fun_ch_mutated_genes_bp_by_ancestry.R'))
+
+## Among all patients
+COLOR_ch.dnmt3a = 'deeppink4'
+ch_global_rate <- df_ano_2 |>
+  filter(functional_ch == 1) |> nrow() / nrow(df_ano_2)
+chDNMT3A_rate_in_all <- df_ano_2 |>
+  filter(functional_ch == 1 & ch.DNMT3A == 1) |> nrow() / nrow(df_ano_2)
+v_colors <- c(COLOR_ch, COLOR_ch.dnmt3a) |> setNames(c("test1", "test2"))
+
+bp_ch.genes_among_all <- df_ano_2 %>%
+  fun_ch_mutated_genes_bp_by_ancestry() +
+  ylim(c(0,35)) +
+  geom_hline(aes(yintercept = ch_global_rate*100,
+                 color = "CH")) +
+  geom_hline(aes(yintercept = chDNMT3A_rate_in_all*100,
+                 color = "ch.DNMT3A")) +
+  scale_color_manual(name = "% in cohort",
+                     values = c(COLOR_ch, COLOR_ch.dnmt3a))
+# bp_ch.genes_among_all +
+#   geom_label(aes(label=paste0(Percent_gene, "%")),
+#              position = position_stack(vjust = .5)) +
+#   guides(fill = guide_legend(override.aes = list(
+#     color=rev(my_palette))))
+## Export
+NAME <- paste(out_dir_fig_supp, 'supp_fig_2.1_', Sys.Date(), '.png', sep='')
+ggsave(bp_ch.genes_among_all, file=NAME, scale=1, width=15*2.8, height=10*2.8, units='cm')
+
+## Among CH patients
+chDNMT3A_rate_in_ch <- df_ano_2 |>
+  filter(functional_ch == 1 & ch.DNMT3A == 1) |> nrow() / nrow(df_ano_2 |> filter(functional_ch == 1))
+
+bp_ch.genes_in_ch <- df_ano_2 %>%
+  filter(functional_ch == 1) %>%
+  fun_ch_mutated_genes_bp_by_ancestry(.) +
+  geom_hline(aes(yintercept = chDNMT3A_rate_in_ch*100,
+                 color = "ch.DNMT3A")) +
+  scale_color_manual(name = "% in CH patients",
+                     values = c(COLOR_ch.dnmt3a)) +
+  ylab("Percentage\nof patients\nwith CH\n(%)") 
+bp_ch.genes_in_ch
+# bp_ch.genes_in_ch +
+#     geom_label(aes(label=paste0(Percent_gene, "%")), 
+#                position = position_stack(vjust = .5)) +
+#   guides(fill = guide_legend(override.aes = list(
+#       color=rev(my_palette))))
+
+## Export
+NAME <- paste(out_dir_fig_supp, 'supp_fig_2_', Sys.Date(), '.png', sep='')
+ggsave(bp_ch.genes_in_ch, file=NAME, scale=1, width=15*2.8, height=10*2.8, units='cm')
+```
+
+## Supplementary Figure: CH ~ Ancestry (non-smokers & non-treated patients)
+
+```{r}
+## CH~Ancestry association forest plot (glm model with spline for age)
+source(paste0(dir_funs, 'fun_main.assoc_by.Ancestry_SPLINE.R'))
+source(paste0(dir_funs, 'fun_odds.ratio.by.Ancestry.R'))
+
+
+## Computing associations CH ~ ancestry (SPLINE):
+data=df_ano_2 %>% filter(smoking_bin==0 & binary_therapy == 0)
+DEPENDENT = 'functional_ch'
+DEPENDENT_tag = 'CH'
+condition_term = 'ancestry_label_2'
+v_confounders_glm = c('age', 'Sex')
+
+mat_confounding = mat_ancestry %>%
+  select(term_ancestry, order_ancestry, tag_ancestry)
+ref_label = 'EUR'
+
+data <- fun_main.assoc_by.Ancestry_SPLINE(data, DEPENDENT, condition_term, ref_label,
+                                          mat_confounding, v_confounders_glm)
+
+## Plot by ancestry
+DEPENDENT = 'functional'
+DEPENDENT_tag = 'CH'
+size_text=SIZE_TEXT-1
+color_p= COLOR_ch
+odds_limits=or_xlim
+by_scale=or_x.byscale
+
+p_dependent_by.Ancestry_odds.ratio_SPLINE = fun_odds.ratio.by.Ancestry(data, DEPENDENT,
+                                                                       size_text, color_p, odds_limits, by_scale)
+
+table_odds_SPLINE = p_dependent_by.Ancestry_odds.ratio_SPLINE[[2]]
+p_dependent_by.Ancestry_odds.ratio_SPLINE = p_dependent_by.Ancestry_odds.ratio_SPLINE[[1]] +
+  ggtitle(DEPENDENT_tag)
+v_confounders_glm = v_confounders_glm[-which(v_confounders_glm=='age')]
+
+p_dependent_by.Ancestry_odds.ratio_SPLINE = p_dependent_by.Ancestry_odds.ratio_SPLINE +
+  ggtitle(paste0('CH ~ Ancestry'),
+          subtitle = paste0('[non-smokers & non-treated]')) +
+  theme(plot.subtitle=element_text(size=7))
+p_dependent_by.Ancestry_odds.ratio_SPLINE
+
+## Export
+NAME <- paste(out_dir_fig_supp, 'supp_fig_3_', Sys.Date(), '.png', sep='')
+ggsave(p_dependent_by.Ancestry_odds.ratio_SPLINE, file=NAME, scale=1, width=15*2.8, height=10*2.8, units='cm')
+```
+
+<br><br><br>
+
+## Supplementary Figure: DNMT3A-CH by age-bin in CH-positive patients with ASJ ancestry
+
+```{r cache=FALSE, fig.width=10, fig.height=8}
+COLOR_ch.dnmt3a = 'deeppink4'
+COLOR_ch.dnmt3a.asj = 'deeppink3'
+COLOR_ch.dnmt3a.eur = 'indianred4'
+
+#################################### 
+## Age bins: All vs ASJ (in CH patients)
+#################################### 
+source(paste0(dir_funs, 'fun_fisher.Confounder_Compare.Conditions.R'))
+CONFOUNDER = 'age_bin'
+CONFOUNDER_tag = 'Age bins'
+
+DEPENDENT = 'ch.DNMT3A'
+DEPENDENT_tag = 'DNMT3A-CH'
+
+CONDITION_1 = 'functional_ch'
+CONDITION_1_tag = 'not ASJ'
+
+CONDITION_2 = 'ASJ.EUR'
+CONDITION_2_tag = 'ASJ'
+
+v_colors = c(COLOR_ch, COLOR_ch.dnmt3a.asj)
+dd = df_ano_2 %>% filter(functional_ch ==1)
+
+new_bp_1 = fun_fisher.Confounder_Compare.Conditions(dd,
+                                                    CONFOUNDER, CONFOUNDER_tag,
+                                                    DEPENDENT, DEPENDENT_tag,
+                                                    CONDITION_1, CONDITION_1_tag,
+                                                    CONDITION_2, CONDITION_2_tag,
+                                                    v_colors) +
+  ggtitle(paste0(DEPENDENT_tag, ': ', CONDITION_2_tag, ' vs ', CONDITION_1_tag),
+          subtitle = '(in CH patients)')
+# new_bp_1
+
+#################################### 
+## Age bins: EUR vs ASJ (in CH patients)
+#################################### 
+source(paste0(dir_funs, 'fun_fisher.Confounder_Compare.Conditions.R'))
+CONFOUNDER = 'age_bin'
+CONFOUNDER_tag = 'Age bins'
+
+DEPENDENT = 'ch.DNMT3A'
+DEPENDENT_tag = 'DNMT3A-CH'
+
+CONDITION_1 = 'nonASJ.EUR'
+CONDITION_1_tag = 'EUR'
+
+CONDITION_2 = 'ASJ.EUR'
+CONDITION_2_tag = 'ASJ'
+
+v_colors = c(COLOR_ch.dnmt3a.eur, COLOR_ch.dnmt3a.asj)
+dd = df_ano_2 %>% filter(functional_ch ==1)
+
+new_bp_2 = fun_fisher.Confounder_Compare.Conditions(dd,
+                                                    CONFOUNDER, CONFOUNDER_tag,
+                                                    DEPENDENT, DEPENDENT_tag,
+                                                    CONDITION_1, CONDITION_1_tag,
+                                                    CONDITION_2, CONDITION_2_tag,
+                                                    v_colors) +
+  ggtitle(paste0(DEPENDENT_tag, ': ', CONDITION_2_tag, ' vs ', CONDITION_1_tag),
+          subtitle = '(in CH patients)')
+# new_bp_2
+
+both_plots <- ggarrange(new_bp_1, new_bp_2, ncol=1, labels=c('A','B'),
+          font.label = list(size = 14, face = "bold", color ="black"))
+both_plots
+## Export
+NAME <- paste(out_dir_fig_supp, 'supp_fig_4_', Sys.Date(), '.png', sep='')
+ggsave(both_plots, file=NAME, scale=1, width=15*2.8, height=10*2.8, units='cm')
+```
+
+
+
+<br><br><br>
+
+## Supplementary Figure: JAK2-CH by age-bin in CH-positive patients with ASJ ancestry
+
+```{r cache=FALSE, fig.width=10, fig.height=8}
+COLOR_ch.jak2 = 'seagreen4'
+COLOR_ch.jak2.asj = 'seagreen3'
+COLOR_ch.jak2.eur = 'seagreen2'
+
+#################################### 
+## Age bins: All vs ASJ (in CH patients)
+#################################### 
+source(paste0(dir_funs, 'fun_fisher.Confounder_Compare.Conditions.R'))
+CONFOUNDER = 'age_bin'
+CONFOUNDER_tag = 'Age bins'
+
+DEPENDENT = 'ch.JAK2'
+DEPENDENT_tag = 'JAK2-CH'
+
+CONDITION_1 = 'functional_ch'
+CONDITION_1_tag = 'not ASJ'
+
+CONDITION_2 = 'ASJ.EUR'
+CONDITION_2_tag = 'ASJ'
+
+v_colors = c(COLOR_ch, COLOR_ch.jak2.asj)
+dd = df_ano_2 %>% filter(functional_ch ==1)
+
+new_bp_1 = fun_fisher.Confounder_Compare.Conditions(dd,
+                                                    CONFOUNDER, CONFOUNDER_tag,
+                                                    DEPENDENT, DEPENDENT_tag,
+                                                    CONDITION_1, CONDITION_1_tag,
+                                                    CONDITION_2, CONDITION_2_tag,
+                                                    v_colors) +
+  ggtitle(paste0(DEPENDENT_tag, ': ', CONDITION_2_tag, ' vs ', CONDITION_1_tag),
+          subtitle = '(in CH patients)')
+# new_bp_1
+
+#################################### 
+## Age bins: EUR vs ASJ (in CH patients)
+#################################### 
+source(paste0(dir_funs, 'fun_fisher.Confounder_Compare.Conditions.R'))
+CONFOUNDER = 'age_bin'
+CONFOUNDER_tag = 'Age bins'
+
+DEPENDENT = 'ch.JAK2'
+DEPENDENT_tag = 'JAK2-CH'
+
+CONDITION_1 = 'nonASJ.EUR'
+CONDITION_1_tag = 'EUR'
+
+CONDITION_2 = 'ASJ.EUR'
+CONDITION_2_tag = 'ASJ'
+
+v_colors = c(COLOR_ch.jak2.eur, COLOR_ch.jak2.asj)
+dd = df_ano_2 %>% filter(functional_ch ==1)
+
+new_bp_2 = fun_fisher.Confounder_Compare.Conditions(dd,
+                                                    CONFOUNDER, CONFOUNDER_tag,
+                                                    DEPENDENT, DEPENDENT_tag,
+                                                    CONDITION_1, CONDITION_1_tag,
+                                                    CONDITION_2, CONDITION_2_tag,
+                                                    v_colors) +
+  ggtitle(paste0(DEPENDENT_tag, ': ', CONDITION_2_tag, ' vs ', CONDITION_1_tag),
+          subtitle = '(in CH patients)')
+# new_bp_2
+
+both_plots <- ggarrange(new_bp_1, new_bp_2, ncol=1, labels=c('A','B'),
+          font.label = list(size = 14, face = "bold", color ="black"))
+both_plots
+## Export
+NAME <- paste(out_dir_fig_supp, 'supp_fig_5_', Sys.Date(), '.png', sep='')
+ggsave(both_plots, file=NAME, scale=1, width=15*2.8, height=10*2.8, units='cm')
+```
+
+
+
+<br><br><br>
+
+## Supplementary Figure: PPM1D-CH by age-bin in CH-positive patients with ASJ ancestry
+
+```{r cache=FALSE, fig.width=10, fig.height=8}
+COLOR_ch.ppm1d = 'lightblue4'
+COLOR_ch.ppm1d.asj = 'lightblue3'
+COLOR_ch.ppm1d.eur = 'lightblue2'
+#################################### 
+## Age bins: All vs ASJ (in CH patients)
+#################################### 
+source(paste0(dir_funs, 'fun_fisher.Confounder_Compare.Conditions.R'))
+CONFOUNDER = 'age_bin'
+CONFOUNDER_tag = 'Age bins'
+
+DEPENDENT = 'ch.PPM1D'
+DEPENDENT_tag = 'PPM1D-CH'
+
+CONDITION_1 = 'functional_ch'
+CONDITION_1_tag = 'not ASJ'
+
+CONDITION_2 = 'ASJ.EUR'
+CONDITION_2_tag = 'ASJ'
+
+v_colors = c(COLOR_ch, COLOR_ch.ppm1d.asj)
+dd = df_ano_2 %>% filter(functional_ch ==1)
+
+new_bp_1 = fun_fisher.Confounder_Compare.Conditions(dd,
+                                                    CONFOUNDER, CONFOUNDER_tag,
+                                                    DEPENDENT, DEPENDENT_tag,
+                                                    CONDITION_1, CONDITION_1_tag,
+                                                    CONDITION_2, CONDITION_2_tag,
+                                                    v_colors) +
+  ggtitle(paste0(DEPENDENT_tag, ': ', CONDITION_2_tag, ' vs ', CONDITION_1_tag),
+          subtitle = '(in CH patients)')
+# new_bp_1
+
+
+#################################### 
+## Age bins: EUR vs ASJ (in CH patients)
+#################################### 
+source(paste0(dir_funs, 'fun_fisher.Confounder_Compare.Conditions.R'))
+CONFOUNDER = 'age_bin'
+CONFOUNDER_tag = 'Age bins'
+
+DEPENDENT = 'ch.PPM1D'
+DEPENDENT_tag = 'PPM1D-CH'
+
+CONDITION_1 = 'nonASJ.EUR'
+CONDITION_1_tag = 'EUR'
+
+CONDITION_2 = 'ASJ.EUR'
+CONDITION_2_tag = 'ASJ'
+
+v_colors = c(COLOR_ch.ppm1d.eur, COLOR_ch.ppm1d.asj)
+dd = df_ano_2 %>% filter(functional_ch ==1)
+
+new_bp_2 = fun_fisher.Confounder_Compare.Conditions(dd,
+                                                    CONFOUNDER, CONFOUNDER_tag,
+                                                    DEPENDENT, DEPENDENT_tag,
+                                                    CONDITION_1, CONDITION_1_tag,
+                                                    CONDITION_2, CONDITION_2_tag,
+                                                    v_colors) +
+  ggtitle(paste0(DEPENDENT_tag, ': ', CONDITION_2_tag, ' vs ', CONDITION_1_tag),
+          subtitle = '(in CH patients)')
+# new_bp_2
+
+both_plots <- ggarrange(new_bp_1, new_bp_2, ncol=1, labels=c('A','B'),
+          font.label = list(size = 14, face = "bold", color ="black"))
+both_plots
+## Export
+NAME <- paste(out_dir_fig_supp, 'supp_fig_6_', Sys.Date(), '.png', sep='')
+ggsave(both_plots, file=NAME, scale=1, width=15*2.8, height=10*2.8, units='cm')
+```
+
+
+<br><br><br>
+
+## Supplementary Figure: PPM1D-CH by therapy in CH-positive patients with ASJ ancestry
+
+```{r cache=FALSE}
+#################################### 
+## Therapy: EUR vs ASJ (in CH patients)
+#################################### 
+source(paste0(dir_funs, 'fun_fisher.Confounder_Compare.Conditions.R'))
+CONFOUNDER = 'binary_therapy'
+CONFOUNDER_tag = 'Therapy'
+
+DEPENDENT = 'ch.PPM1D'
+DEPENDENT_tag = 'PPM1D-CH'
+
+CONDITION_1 = 'functional_ch'
+CONDITION_1_tag = 'not ASJ'
+
+CONDITION_2 = 'ASJ.EUR'
+CONDITION_2_tag = 'ASJ'
+
+v_colors = c(COLOR_ch.ppm1d.eur, COLOR_ch.ppm1d.asj)
+dd = df_ano_2 %>% filter(functional_ch ==1)
+
+new_bp = fun_fisher.Confounder_Compare.Conditions(dd,
+                                                  CONFOUNDER, CONFOUNDER_tag,
+                                                  DEPENDENT, DEPENDENT_tag,
+                                                  CONDITION_1, CONDITION_1_tag,
+                                                  CONDITION_2, CONDITION_2_tag,
+                                                  v_colors) +
+  ggtitle(paste0(DEPENDENT_tag, ': ', CONDITION_2_tag, ' vs ', CONDITION_1_tag),
+          subtitle = '(in CH patients)')
+new_bp
+
+## Export
+NAME <- paste(out_dir_fig_supp, 'supp_fig_7_', Sys.Date(), '.png', sep='')
+ggsave(new_bp, file=NAME, scale=1, width=15*2.8, height=10*2.8, units='cm')
+```
+
+<br><br>
+
+## Suplementary: CH-enriched genes by ancestry [non-smokers and not-treated] 
+
+```{r}
+fun_ch.Gene_by.Ancestry_SPLINE_2.0_NoSmokeNoTherapy = function(data, DEPENDENT = 'ch.DNMT3A',
+                                                               mat_confounding, condition_term,
+                                                               v_confounders_glm){
+  
+  
+  ####################################################################
+  ####### ch.GENE (DEPENDENT) ~ Ancestry : Reference on EUR ####################
+  
+  ## Creating dummy df with tags by ancestry:
+  colnames(mat_confounding) = c(condition_term, 'order_ancestry', 'tags_ancestry')
+  mat_confounding = as.data.frame(rbind(
+    mat_confounding %>% filter(get(condition_term)==ref_label),
+    mat_confounding %>% filter(get(condition_term)!=ref_label)
+  ))
+  mat_confounding = mat_confounding %>%
+    mutate(order_ancestry = paste0('__', seq(1, nrow(mat_confounding), by=1),
+                                   '_', as.character(mat_confounding[,1])))
+  
+  
+  ## Selecting data:
+  
+  # DEPENDENT = 'ch.DNMT3A'
+  # print(paste('##@@@@--', DEPENDENT, '--@@@@##', sep=''))
+  
+  data_1 = data  %>% 
+    # filter(get(DEPENDENT) == 1 | functional_ch == 1 ) %>%
+    filter(get(DEPENDENT) == 1 | functional_ch == 1 | functional_ch == 0) %>%
+    select(all_of(DEPENDENT), all_of(condition_term), all_of(v_confounders_glm)) %>%
+    left_join(mat_confounding)
+  
+  ## Extracting number of patients by ancestry (CONDITION) in DEPENDENT:
+  
+  v_ancestry_label = as.character(mat_confounding[,1])
+  names(v_ancestry_label) = as.character(mat_confounding[,3])
+  
+  df_numbers_by.ancesty = as.data.frame(do.call(rbind, lapply(1:length(v_ancestry_label), function(i){
+    CONDITION <-  v_ancestry_label[i]
+    # print(paste('##--', CONDITION, '--##', sep=''))
+    
+    data2 = data_1 %>%
+      mutate(new=ifelse(get(condition_term)==CONDITION, 1, 0))
+    colnames(data2)[ncol(data2)] = CONDITION
+    
+    m <- data2 %>% select(all_of(DEPENDENT), all_of(CONDITION)) %>% table
+    m2 <- c(CONDITION, DEPENDENT,
+            sum(m),
+            sum(m[,2]),
+            sum(m[2,]),
+            m[2,2],
+            sum(m[2,])/sum(m),
+            m[2,2]/sum(m[,2])) %>%
+      as.data.frame %>% t()
+    colnames(m2) <- c('Condition', 'Dependent', 'Total', 'n_Condition', 'n_Dependent',
+                      'n_Dependent_in_Condition', 'f_Dependent_in_Total', 'f_Dependent_in_Condition')
+    # m2 
+    
+    Glm.test = glm(get(DEPENDENT) ~ get(CONDITION) + ns(age,3) + Sex,
+                   data=data2, family = binomial(link=logit))
+    b_multi <- broom::tidy(Glm.test, exponentiate = T, conf.int=T) %>% as.data.frame %>%
+      select(term, estimate, p.value, conf.low, conf.high) 
+    
+    b_multi_2 = b_multi %>%
+      select(term, estimate, p.value, conf.low, conf.high) %>%
+      filter(grepl('CONDITION', term)) %>%
+      mutate(term=CONDITION) %>%
+      mutate(order_ancestry = paste0('__', i, '_', term)) %>%
+      left_join(mat_confounding) %>%
+      select(-c(term, order_ancestry, all_of(condition_term)))
+    colnames(b_multi_2) = c('glm.odds.ratio', 'glm.p.value', 'glm.conf.low', 'glm.conf.high', 'Condition_tags')
+    
+    cbind(m2, b_multi_2)
+    
+  })))
+  
+  
+  b_multi_3 = df_numbers_by.ancesty
+  
+  # ## Export:
+  # 
+  # NAME <- paste(out.dir_data.folder, DEPENDENT, '_by.Ancestries_assocs_', Sys.Date(), '.tsv', sep='')
+  # write.table(b_multi_3, NAME, col.names=T, row.names=F, quote=F, sep='\t')
+  # 
+  # NAME 
+  
+  b_multi_3
+}
+
+```
+
+
+```{r cache=TRUE}
+##############################
+## ch.GENE ~ Ancestry association and Plot by ancestry
+##############################
+
+## Computing associations ch.GENE ~ ancestry:
+v_dependents <- rownames(df_ano_2 %>%
+                           select(all_of(ch.genes.cols)) %>%
+                           apply(2, sum) %>% sort(decreasing=T) %>%
+                           as.data.frame() %>% slice(1:5)) 
+
+condition_term = 'ancestry_label_2'
+data = df_ano_2 %>% filter(smoking_bin ==0 & binary_therapy==0)
+mat_confounding = mat_ancestry %>%
+  select(term_ancestry, order_ancestry, tag_ancestry)
+
+DF_all__ch.Gene.v.Ancestry_noSmoke_noTherapy = as.data.frame(do.call(rbind, lapply(v_dependents, function(DEPENDENT){
+  v_confounders_glm = c('age', 'Sex') ## FIXED!! DO NOT CHANGE!
+  
+  dat_by.ch.Gene <- fun_ch.Gene_by.Ancestry_SPLINE_2.0_NoSmokeNoTherapy(data, DEPENDENT,
+                                                                        mat_confounding, condition_term,
+                                                                        v_confounders_glm)
+  dat_by.ch.Gene
+})))
+
+## Export:
+NAME <- paste(out_dir_by.ch.Gene, 'SPLINE_ch.genes_by.Ancestries_NoSmokeNoTherapy__', Sys.Date(), '.tsv', sep='')
+write.table(DF_all__ch.Gene.v.Ancestry_noSmoke_noTherapy, NAME, col.names=T, row.names=F, quote=F, sep='\t')
+```
+
+
+```{r}
+source(paste0(dir_funs, 'fun_ht.ch.Gene.v.Ancestry_2.0.R'))
+
+x_file= paste0(out_dir_by.ch.Gene, 'SPLINE_ch.genes_by.Ancestries_NoSmokeNoTherapy__', Sys.Date(), '.tsv')
+
+v_conditions=mat_ancestry$term_ancestry
+ch.genes= v_dependents
+fill_colors=c(COLOR_min, COLOR_mid, COLOR_max)
+text_color='gray1'
+n_range=or_xlim[2]
+test_type='glm'
+x.text_angle=30
+add_numbers=TRUE
+
+HT_plot_spline_NoSmokeNoTherapy <-fun_ht.ch.Gene.v.Ancestry_2.0(x_file, v_conditions, ch.genes,
+                                                                fill_colors,
+                                                                text_color,
+                                                                n_range,
+                                                                x.text_angle, add_numbers)
+
+table_plot_spline_NoSmokeNoTherapy = HT_plot_spline_NoSmokeNoTherapy[['TABLE_plot']]
+ht_ch.Gene.v.Ancestry_spline_NoSmokeNoTherapy = HT_plot_spline_NoSmokeNoTherapy[['PLOT']] 
+
+
+## Export:
+NAME <- paste(out_dir_by.ch.Gene, 'ht_ch.Gene.v.Ancestry__SPLINE_NoSmokeNoTherapy_', Sys.Date(), '.png', sep='')
+ggsave(ht_ch.Gene.v.Ancestry_spline_NoSmokeNoTherapy, file=NAME, scale=1, width=12, height=12, units='cm')
+
+NAME <- paste(out_dir_by.ch.Gene, 'ht_ch.Gene.v.Ancestry__SPLINE_NoSmokeNoTherapy_', Sys.Date(), '.tsv', sep='')
+write.table(table_plot_spline_NoSmokeNoTherapy, NAME, col.names=T, row.names=F, quote=F, sep='\t')
+
+ht_ch.Gene.v.Ancestry_spline_NoSmokeNoTherapy
+
+## Export
+NAME <- paste(out_dir_fig_supp, 'supp_fig_8_', Sys.Date(), '.png', sep='')
+ggsave(ht_ch.Gene.v.Ancestry_spline_NoSmokeNoTherapy, file=NAME, scale=1, width=15*2.8, height=10*2.8, units='cm')
+```
+
+## Suplementary v2[only in CH]: CH-enriched genes by ancestry [non-smokers and not-treated] 
+
+
+
+
+```{r cache=TRUE}
+##############################
+## ch.GENE ~ Ancestry association and Plot by ancestry
+##############################
+
+## Computing associations ch.GENE ~ ancestry:
+v_dependents <- rownames(df_ano_2 %>%
+                           select(all_of(ch.genes.cols)) %>%
+                           apply(2, sum) %>% sort(decreasing=T) %>%
+                           as.data.frame() %>% slice(1:5)) 
+
+condition_term = 'ancestry_label_2'
+data = df_ano_2 %>%
+  filter(functional_ch == 1) |> 
+  filter(smoking_bin ==0 & binary_therapy==0)
+mat_confounding = mat_ancestry %>%
+  select(term_ancestry, order_ancestry, tag_ancestry)
+
+DF_all__ch.Gene.v.Ancestry_noSmoke_noTherapy = as.data.frame(do.call(rbind, lapply(v_dependents, function(DEPENDENT){
+  v_confounders_glm = c('age', 'Sex') ## FIXED!! DO NOT CHANGE!
+  
+  dat_by.ch.Gene <- fun_ch.Gene_by.Ancestry_SPLINE_2.0_NoSmokeNoTherapy(data, DEPENDENT,
+                                                                        mat_confounding, condition_term,
+                                                                        v_confounders_glm)
+  dat_by.ch.Gene
+})))
+
+## Export:
+NAME <- paste(out_dir_by.ch.Gene, 'onlyCH_SPLINE_ch.genes_by.Ancestries_NoSmokeNoTherapy__', Sys.Date(), '.tsv', sep='')
+write.table(DF_all__ch.Gene.v.Ancestry_noSmoke_noTherapy, NAME, col.names=T, row.names=F, quote=F, sep='\t')
+```
+
+
+```{r}
+source(paste0(dir_funs, 'fun_ht.ch.Gene.v.Ancestry_2.0.R'))
+
+x_file= paste0(out_dir_by.ch.Gene, 'onlyCH_SPLINE_ch.genes_by.Ancestries_NoSmokeNoTherapy__', Sys.Date(), '.tsv')
+
+v_conditions=mat_ancestry$term_ancestry
+ch.genes= v_dependents
+fill_colors=c(COLOR_min, COLOR_mid, COLOR_max)
+text_color='gray1'
+n_range=or_xlim[2]
+test_type='glm'
+x.text_angle=30
+add_numbers=TRUE
+
+HT_plot_spline_NoSmokeNoTherapy <-fun_ht.ch.Gene.v.Ancestry_2.0(x_file, v_conditions, ch.genes,
+                                                                fill_colors,
+                                                                text_color,
+                                                                n_range,
+                                                                x.text_angle, add_numbers)
+
+onlyCH_table_plot_spline_NoSmokeNoTherapy = HT_plot_spline_NoSmokeNoTherapy[['TABLE_plot']]
+onlyCH_ht_ch.Gene.v.Ancestry_spline_NoSmokeNoTherapy = HT_plot_spline_NoSmokeNoTherapy[['PLOT']] 
+
+
+## Export:
+NAME <- paste(out_dir_by.ch.Gene, 'onlyCH_ht_ch.Gene.v.Ancestry__SPLINE_NoSmokeNoTherapy_', Sys.Date(), '.png', sep='')
+ggsave(onlyCH_ht_ch.Gene.v.Ancestry_spline_NoSmokeNoTherapy, file=NAME, scale=1, width=12, height=12, units='cm')
+
+NAME <- paste(out_dir_by.ch.Gene, 'onlyCH_ht_ch.Gene.v.Ancestry__SPLINE_NoSmokeNoTherapy_', Sys.Date(), '.tsv', sep='')
+write.table(onlyCH_table_plot_spline_NoSmokeNoTherapy, NAME, col.names=T, row.names=F, quote=F, sep='\t')
+
+onlyCH_ht_ch.Gene.v.Ancestry_spline_NoSmokeNoTherapy
+
+## Export
+NAME <- paste(out_dir_fig_supp, 'supp_fig_8.2_', Sys.Date(), '.png', sep='')
+ggsave(onlyCH_ht_ch.Gene.v.Ancestry_spline_NoSmokeNoTherapy, file=NAME, scale=1, width=15*2.8, height=10*2.8, units='cm')
+```
+
+```{r}
+source(paste0(dir_funs, 'fun_CH.rates.by.CONFOUNDER.R'))
+
+v_x_terms = c('ch.DNMT3A', 'smoking_bin', 'binary_therapy')
+names(v_x_terms) = c('ch.DNMT3A', 'Smoking', 'Therapy')
+colors_x_terms = c(COLOR_ch, 'blue', 'green')
+
+l_plots_by_ancestry <- lapply(unique(df_ano_2$ancestry_label_2), function(ANCESTRY){
+  l_plots_ch.rates = lapply(1:length(v_x_terms), function(i){
+    data = df_ano_2 |>
+      filter(functional_ch == 1) |> 
+      filter(ancestry_label_2 == ANCESTRY)
+    conf_var_term = 'age_bin'
+    x_term = v_x_terms[i]
+    x_term_tag = names(v_x_terms)[i]
+    
+    pb_ch = fun_CH.rates.by.CONFOUNDER(data, conf_var_term, x_term, x_term_tag,
+                                       rate_color=colors_x_terms[i], rest_color='gray',
+                                       p_y_lim=c(0,100), decreasing=FALSE) + coord_flip() +
+      ggtitle(paste0(x_term_tag, ' fraction in ', CONFOUNDER_tag),
+              subtitle = ANCESTRY) +
+      theme(legend.position = "none")
+  })
+  N_ROW = 1
+  N_COL = 3
+  p_ch.rates = ggarrange(plotlist = l_plots_ch.rates, ncol=N_COL,nrow=N_ROW)
+  p_ch.rates
+})
+
+l_plots_by_ancestry[[1]]
+
+```
+<br>
+<br>
+<br>
+<br>

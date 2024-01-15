@@ -1,0 +1,870 @@
+code	color	name	mainType	tissue	children	parent	level
+MMB	Gray	Medullomyoblastoma	Embryonal Tumor	CNS/Brain	{}	EMBT	3
+GCB	LimeGreen	Germinal Center B-Cell Type	Mature B-Cell Neoplasms	Lymphoid	{}	DLBCLNOS	6
+SBLU	LimeGreen	Splenic B-Cell Lymphoma/Leukemia	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+OHNCA	DarkRed	Head and Neck Carcinoma	Head and Neck Cancer	Head and Neck	{}	HEAD_NECK	2
+PAOS	White	Parosteal Osteosarcoma	Bone Cancer	Bone	{}	OS	3
+TMDS	LightSalmon	Therapy-Related Myelodysplastic Syndrome	Leukemia	Myeloid	{}	TMN	5
+ARMS	LightYellow	Alveolar Rhabdomyosarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	RMS	3
+SCST	LightBlue	Sex Cord Stromal Tumor	Sex Cord Stromal Tumor	Ovary/Fallopian Tube	{}	OVARY	2
+ITLPDGI	LimeGreen	Indolent T-Cell Lymphoproliferative Disorder of the GI Tract	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+MBC	HotPink	Metaplastic Breast Cancer	Breast Cancer	Breast	{}	BREAST	2
+AWDNET	SaddleBrown	Well-Differentiated Neuroendocrine Tumor of the Appendix	Gastrointestinal Neuroendocrine Tumor	Bowel	{}	GINET	3
+AMLCBFBMYH11	LightSalmon	AML with inv(16)(p13.1q22) or t(16;16)(p13.1;q22);CBFB-MYH11	Leukemia	Myeloid	{}	AMLRGA	5
+ROCY	Orange	Renal Oncocytoma	Renal Cell Carcinoma	Kidney	{}	NCCRCC	4
+LAM	Gainsboro	Pulmonary Lymphangiomyomatosis	Non-Small Cell Lung Cancer	Lung	{}	LUNG	2
+SBL	DarkRed	Sialoblastoma	Sialoblastoma	Head and Neck	{}	HEAD_NECK	2
+AWM	LightSalmon	AML without Maturation	Leukemia	Myeloid	{}	AMLNOS	5
+AMLMRC	LightSalmon	AML with Myelodysplasia-Related Changes	Leukemia	Myeloid	{}	AML	4
+CABC	Teal	Cervical Adenoid Basal Carcinoma	Cervical Cancer	Cervix	{}	CERVIX	2
+PCGP	Gray	Craniopharyngioma	Sellar Tumor	CNS/Brain	{}	SELT	3
+SCCO	LightBlue	Small Cell Carcinoma of the Ovary	Ovarian Cancer	Ovary/Fallopian Tube	{}	OVT	3
+LGT	Green	Lacrimal Gland Tumor	Lacrimal Gland Tumor	Eye	{}	EYE	2
+GBM	Gray	Glioblastoma Multiforme	Glioma	CNS/Brain	{}	GB	4
+BL	LimeGreen	Burkitt Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+MFS	LightYellow	Myxofibrosarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+AN	Black	Atypical Nevus	Skin Cancer	Skin	{}	SKIN	2
+SELT	Gray	Sellar Tumor	Sellar Tumor	CNS/Brain	{}	BRAIN	2
+AMOL	LightSalmon	Acute Monoblastic/Monocytic Leukemia	Leukemia	Myeloid	{}	AMLNOS	5
+PERL	LightSalmon	Pure Erythroid Leukemia	Leukemia	Myeloid	{}	AMLNOS	5
+AMLCEBPA	LightSalmon	AML with Biallelic Mutations of CEBPA	Leukemia	Myeloid	{}	AMLRGA	5
+UASC	PeachPuff	Uterine Adenosquamous Carcinoma	Endometrial Cancer	Uterus	{}	UCEC	3
+LNM	LimeGreen	Lymphoid Neoplasm	Lymphatic Cancer	Lymphoid	{}	LYMPH	2
+PXA	Gray	Pleomorphic Xanthoastrocytoma	Glioma	CNS/Brain	{}	ENCG	3
+PMBL	LimeGreen	Primary Mediastinal (Thymic) Large B-Cell Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+BIALCL	LimeGreen	Breast Implant-Associated Anaplastic Large-Cell Lymphoma	Mature T and NK Neoplasms	Lymphoid	{}	ALCL	6
+SRAP	SaddleBrown	Signet Ring Cell Type of the Appendix	Appendiceal Cancer	Bowel	{}	APAD	3
+LXSC	DarkRed	Larynx Squamous Cell Carcinoma	Head and Neck Cancer	Head and Neck	{}	HNSC	3
+ADRENAL_GLAND	Purple	Adrenal Gland	Adrenal Gland Cancer	Adrenal Gland	{}	TISSUE	1
+WM	LimeGreen	Waldenstrom Macroglobulinemia	Mature B-Cell Neoplasms	Lymphoid	{}	LPL	6
+RHM	Gray	Rhabdoid Meningioma	CNS Cancer	CNS/Brain	{}	MNGT	3
+WDLS	LightYellow	Well-Differentiated Liposarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	LIPO	3
+PEMESO	Green	Peritoneal Mesothelioma	Mesothelioma	Peritoneum	{}	PERITONEUM	2
+CNL	LightSalmon	Chronic Neutrophilic Leukemia	Myeloproliferative Neoplasms	Myeloid	{}	MPN	4
+HNSC	DarkRed	Head and Neck Squamous Cell Carcinoma	Head and Neck Cancer	Head and Neck	{}	HEAD_NECK	2
+BLLRGA	LimeGreen	B-Lymphoblastic Leukemia/Lymphoma with Recurrent Genetic Abnormalities	B-Lymphoblastic Leukemia/Lymphoma	Lymphoid	{}	BLL	4
+DESM	Black	Desmoplastic Melanoma	Melanoma	Skin	{}	MEL	3
+OEC	LightBlue	Embryonal Carcinoma	Germ Cell Tumor	Ovary/Fallopian Tube	{}	OGCT	3
+SCLC	Gainsboro	Small Cell Lung Cancer	Small Cell Lung Cancer	Lung	{}	LNET	3
+EMPSGC	Black	Endocrine Mucin Producing Sweat Gland Carcinoma	Skin Cancer	Skin	{}	SKIN	2
+ACBC	HotPink	Adenoid Cystic Breast Cancer	Breast Cancer	Breast	{}	BRCA	3
+OPHSC	DarkRed	Oropharynx Squamous Cell Carcinoma	Head and Neck Cancer	Head and Neck	{}	HNSC	3
+CERMS	Teal	Cervical Rhabdomyosarcoma	Cervical Cancer	Cervix	{}	CERVIX	2
+GCEMU	Teal	Gastric Type Mucinous Carcinoma	Cervical Cancer	Cervix	{}	CEMU	4
+ENCG	Gray	Encapsulated Glioma	Glioma	CNS/Brain	{}	BRAIN	2
+PTLD	LimeGreen	Posttransplant Lymphoproliferative Disorders	Posttransplant Lymphoproliferative Disorders	Lymphoid	{}	LNM	3
+SUBE	Gray	Subependymoma	CNS Cancer	CNS/Brain	{}	EPMT	3
+SCGBC	Green	Small Cell Gallbladder Carcinoma	Hepatobiliary Cancer	Biliary Tract	{}	GBC	3
+FIOS	White	Fibroblastic Osteosarcoma	Bone Cancer	Bone	{}	OS	3
+HGSOC	LightBlue	High-Grade Serous Ovarian Cancer	Ovarian Cancer	Ovary/Fallopian Tube	{}	SOC	4
+THHC	Teal	Hurthle Cell Thyroid Cancer	Thyroid Cancer	Thyroid	{}	THYROID	2
+LUNE	Gainsboro	Large Cell Neuroendocrine Carcinoma	Non-Small Cell Lung Cancer	Lung	{}	LNET	3
+MGUSIGG	LimeGreen	IgG	Mature B-Cell Neoplasms	Lymphoid	{}	MGUS	6
+UPDC	PeachPuff	Poorly Differentiated Carcinoma of the Uterus	Endometrial Cancer	Uterus	{}	UCEC	3
+OGBL	LightBlue	Gonadoblastoma	Sex Cord Stromal Tumor	Ovary/Fallopian Tube	{}	SCST	3
+CCPRC	Orange	Clear Cell Papillary Renal Cell Carcinoma	Renal Cell Carcinoma	Kidney	{}	NCCRCC	4
+PSC	Purple	Serous Cystadenoma of the Pancreas	Pancreatic Cancer	Pancreas	{}	PACT	3
+RSCC	Orange	Renal Small Cell Carcinoma	Renal Cell Carcinoma	Kidney	{}	NCCRCC	4
+BCCA	Gray	Choriocarcinoma	Germ Cell Tumor	CNS/Brain	{}	BGCT	3
+SRCBC	Yellow	Plasmacytoid/Signet Ring Cell Bladder Carcinoma	Bladder Cancer	Bladder/Urinary Tract	{}	BLADDER	2
+PEL	LimeGreen	Primary Effusion Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+CCS	LightYellow	Clear Cell Sarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+UPA	Yellow	Urothelial Papilloma	Bladder Cancer	Bladder/Urinary Tract	{}	BLADDER	2
+MFH	LightYellow	Undifferentiated Pleomorphic Sarcoma/Malignant Fibrous Histiocytoma/High-Grade Spindle Cell Sarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+FIBS	LightYellow	Fibrosarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+COM	HotPink	Carcinoma with Osseous Metaplasia	Breast Cancer	Breast	{}	MMBC	4
+BMGCT	Gray	Mixed Germ Cell Tumor	Germ Cell Tumor	CNS/Brain	{}	BGCT	3
+PVMF	LightSalmon	Polycythaemia Vera Myelofibrosis	Myeloproliferative Neoplasms	Myeloid	{}	PV	5
+SCHW	Gray	Schwannoma	Nerve Sheath Tumor	Peripheral Nervous System	{}	NST	3
+BTBEOV	LightBlue	Brenner Tumor	Ovarian Cancer	Ovary/Fallopian Tube	{}	BTOV	4
+CERVIX	Teal	Cervix	Cervical Cancer	Cervix	{}	TISSUE	1
+SIC	SaddleBrown	Small Intestinal Carcinoma	Small Bowel Cancer	Bowel	{}	BOWEL	2
+NSCHL	LimeGreen	Nodular Sclerosis Classical Hodgkin Lymphoma	Hodgkin Lymphoma	Lymphoid	{}	CHL	5
+NSCLC	Gainsboro	Non-Small Cell Lung Cancer	Non-Small Cell Lung Cancer	Lung	{}	LUNG	2
+OGCT	LightBlue	Ovarian Germ Cell Tumor	Germ Cell Tumor	Ovary/Fallopian Tube	{}	OVARY	2
+CEVG	Teal	Villoglandular Carcinoma	Cervical Cancer	Cervix	{}	CEAD	3
+MAC	Black	Microcystic Adnexal Carcinoma	Skin Cancer	Skin	{}	SKIN	2
+VDYS	Purple	Dysgerminoma	Germ Cell Tumor	Vulva/Vagina	{}	VGCT	3
+PHCH	Green	Perihilar Cholangiocarcinoma	Hepatobiliary Cancer	Biliary Tract	{}	CHOL	3
+BPLL	LimeGreen	B-Cell Prolymphocytic Leukemia	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+GMN	Gray	Germinoma	Germ Cell Tumor	CNS/Brain	{}	BGCT	3
+GCTSTM	Red	Germ Cell Tumor with Somatic-Type Malignancy	Germ Cell Tumor	Testis	{}	NSGCT	3
+BCAC	DarkRed	Basal Cell Adenocarcinoma	Salivary Gland Cancer	Head and Neck	{}	SACA	3
+OM	Green	Ocular Melanoma	Melanoma	Eye	{}	EYE	2
+BPSCC	Blue	Basaloid Penile Squamous Cell Carcinoma	Penile Cancer	Penis	{}	PSCC	3
+BLL	LimeGreen	B-Lymphoblastic Leukemia/Lymphoma	B-Lymphoblastic Leukemia/Lymphoma	Lymphoid	{}	LNM	3
+PCNSMT	Gray	Primary CNS Melanocytic Tumors	Primary CNS Melanocytic Tumors	CNS/Brain	{}	BRAIN	2
+MLNFGFR1	LightSalmon	Myeloid/Lymphoid Neoplasms with FGFR1 Rearrangement	Leukemia	Myeloid	{}	MLNER	4
+OSMBT	LightBlue	Ovarian Seromucinous Borderline Tumor	Ovarian Cancer	Ovary/Fallopian Tube	{}	OVT	3
+MDSID5Q	LightSalmon	MDS with Isolated Del(5q)	Myelodysplastic Syndromes	Myeloid	{}	MDS	4
+PHPTLD	LimeGreen	Plasmacytic Hyperplasia PTLD	Posttransplant Lymphoproliferative Disorders	Lymphoid	{}	PTLD	4
+ASPS	LightYellow	Alveolar Soft Part Sarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+NETNOS	Black	Neuroendocrine Tumor	Cancer of Unknown Primary	Other	{}	CUP	3
+IOPN	Purple	Intraductal Oncocytic Papillary Neoplasm	Pancreatic Cancer	Pancreas	{}	PACT	3
+AMPULLA_OF_VATER	Purple	Ampulla of Vater	Ampullary Carcinoma	Ampulla of Vater	{}	TISSUE	1
+MPALBCRABL1	LightSalmon	Mixed Phenotype Acute Leukemia with t(9;22)(q34.1;q11.2); BCR-ABL1	Leukemia	Myeloid	{}	ALAL	4
+MCBCL	LimeGreen	Monoclonal B-Cell Lymphocytosis	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+ALKLBCL	LimeGreen	ALK Positive Large B-Cell Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+EATL	LimeGreen	Enteropathy-Associated T-Cell Lymphoma	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+BLADDER	Yellow	Bladder/Urinary Tract	Bladder/Urinary Tract Cancer	Bladder/Urinary Tract	{}	TISSUE	1
+TCCA	Red	Choriocarcinoma	Germ Cell Tumor	Testis	{}	NSGCT	3
+MMBL	Gray	Melanotic Medulloblastoma	Embryonal Tumor	CNS/Brain	{}	EMBT	3
+SWDNET	LightSkyBlue	Well-Differentiated Neuroendocrine Tumors of the Stomach	Gastrointestinal Neuroendocrine Tumor	Esophagus/Stomach	{}	GINETES	3
+MUCC	DarkRed	Mucoepidermoid Carcinoma	Salivary Gland Cancer	Head and Neck	{}	SACA	3
+USTUMP	PeachPuff	Uterine Smooth Muscle Tumor of Uncertain Malignant Potential	Uterine Sarcoma	Uterus	{}	USMT	4
+USARC	PeachPuff	Uterine Sarcoma/Mesenchymal	Uterine Sarcoma	Uterus	{}	UTERUS	2
+OCS	LightBlue	Ovarian Carcinosarcoma/Malignant Mixed Mesodermal Tumor	Ovarian Cancer	Ovary/Fallopian Tube	{}	OVT	3
+CMPT	Gainsboro	Ciliated Muconodular Papillary Tumor of the Lung	Non-Small Cell Lung Cancer	Lung	{}	NSCLC	3
+DSRCT	LightYellow	Desmoplastic Small-Round-Cell Tumor	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+ALUCA	Gainsboro	Atypical Lung Carcinoid	Non-Small Cell Lung Cancer	Lung	{}	LNET	3
+SPTCL	LimeGreen	Subcutaneous Panniculitis-Like T-Cell Lymphoma	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+SPC	HotPink	Solid Papillary Carcinoma of the Breast	Breast Cancer	Breast	{}	BRCA	3
+EBOV	LightBlue	Endometrioid Borderlin Ovarian Tumor	Ovarian Cancer	Ovary/Fallopian Tube	{}	OVT	3
+THPD	Teal	Poorly Differentiated Thyroid Cancer	Thyroid Cancer	Thyroid	{}	THYROID	2
+SGO	DarkRed	Salivary Gland Oncocytoma	Salivary Gland Cancer	Head and Neck	{}	SACA	3
+MBGN	LightSalmon	Myeloid Benign	Blood Cancer	Myeloid	{}	MYELOID	2
+MRC	Orange	Renal Medullary Carcinoma	Renal Cell Carcinoma	Kidney	{}	NCCRCC	4
+CSCHW	Gray	Cellular Schwannoma	Nerve Sheath Tumor	Peripheral Nervous System	{}	SCHW	4
+EVN	Gray	Extraventricular Neurocytoma	Miscellaneous Neuroepithelial Tumor	CNS/Brain	{}	MNET	3
+USC	PeachPuff	Uterine Serous Carcinoma/Uterine Papillary Serous Carcinoma	Endometrial Cancer	Uterus	{}	UCEC	3
+PERITONEUM	Green	Peritoneum	Peritoneal Cancer	Peritoneum	{}	TISSUE	1
+NECNOS	Black	Neuroendocrine Carcinoma	Cancer of Unknown Primary	Other	{}	CUP	3
+MIDDA	LimeGreen	Amyloidosis	Mature B-Cell Neoplasms	Lymphoid	{}	MIDD	6
+WDTC	Teal	Well-Differentiated Thyroid Cancer	Thyroid Cancer	Thyroid	{}	THYROID	2
+AHCD	LimeGreen	Alpha Heavy-Chain Disease	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+CSCC	Black	Cutaneous Squamous Cell Carcinoma	Skin Cancer	Skin	{}	SKIN	2
+BYST	Gray	Yolk Sac Tumor	Germ Cell Tumor	CNS/Brain	{}	BGCT	3
+OSGCT	Purple	Osteoclastic Giant Cell Tumor	Pancreatic Cancer	Pancreas	{}	UCP	3
+BLLHYPER	LimeGreen	B-Lymphoblastic Leukemia/Lymphoma with Hyperdiploidy	B-Lymphoblastic Leukemia/Lymphoma	Lymphoid	{}	BLLRGA	5
+SBOV	LightBlue	Serous Borderline Ovarian Tumor	Ovarian Cancer	Ovary/Fallopian Tube	{}	OVT	3
+EMBCA	Red	Embryonal Carcinoma	Germ Cell Tumor	Testis	{}	NSGCT	3
+ADPA	Black	Aggressive Digital Papillary Adenocarcinoma	Skin Cancer	Skin	{}	SKIN	2
+LGSOC	LightBlue	Low-Grade Serous Ovarian Cancer	Ovarian Cancer	Ovary/Fallopian Tube	{}	SOC	4
+HGESS	PeachPuff	High-Grade Endometrial Stromal Sarcoma	Uterine Sarcoma	Uterus	{}	ESS	4
+EBVDLBCLNOS	LimeGreen	EBV Positive DLBCL	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+SEBA	Black	Sebaceous Carcinoma	Skin Cancer	Skin	{}	SKIN	2
+BLLIAMP21	LimeGreen	B-Lymphoblastic Leukemia/Lymphoma with iAMP21	B-Lymphoblastic Leukemia/Lymphoma	Lymphoid	{}	BLLRGA	5
+HNNE	DarkRed	Head and Neck Neuroendocrine Carcinoma	Head and Neck Cancer	Head and Neck	{}	OHNCA	3
+MCHS	White	Mesenchymal Chondrosarcoma	Bone Cancer	Bone	{}	CHS	3
+NPC	DarkRed	Nasopharyngeal Carcinoma	Head and Neck Cancer	Head and Neck	{}	HEAD_NECK	2
+APMF	LightSalmon	Acute Panmyelosis with Myelofibrosis	Leukemia	Myeloid	{}	AMLNOS	5
+LGESS	PeachPuff	Low-Grade Endometrial Stromal Sarcoma	Uterine Sarcoma	Uterus	{}	ESS	4
+PLSMESO	Blue	Pleural Mesothelioma	Mesothelioma	Pleura	{}	PLMESO	3
+HCL-V	LimeGreen	Hairy Cell Leukemia-Variant	Mature B-Cell Neoplasms	Lymphoid	{}	SBLU	6
+PPCT	Black	Proliferating Pilar Cystic Tumor	Skin Cancer	Skin	{}	SKIN	2
+OMGCT	LightBlue	Mixed Germ Cell Tumor	Germ Cell Tumor	Ovary/Fallopian Tube	{}	OGCT	3
+OPE	LightBlue	Polyembryoma	Germ Cell Tumor	Ovary/Fallopian Tube	{}	OGCT	3
+TPLL	LimeGreen	T-Cell Prolymphocytic Leukemia	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+TAC	SaddleBrown	Tubular Adenoma of the Colon	Tubular Adenoma of the Colon	Bowel	{}	BOWEL	2
+UA	Yellow	Urachal Adenocarcinoma	Bladder Cancer	Bladder/Urinary Tract	{}	URCA	3
+CEAD	Teal	Cervical Adenocarcinoma	Cervical Cancer	Cervix	{}	CERVIX	2
+ALCLALKN	LimeGreen	Anaplastic Large-Cell Lymphoma ALK Negative	Mature T and NK Neoplasms	Lymphoid	{}	ALCL	6
+HEMA	LightYellow	Hemangioma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+CMCD	LightSalmon	Cutaneous Mastocytosis	Mastocytosis	Myeloid	{}	MCD	4
+PLLS	LightYellow	Pleomorphic Liposarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	LIPO	3
+DDLS	LightYellow	Dedifferentiated Liposarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	LIPO	3
+LUMEC	Gainsboro	Mucoepidermoid Carcinoma of the Lung	Non-Small Cell Lung Cancer	Lung	{}	SGTTL	4
+MDLC	HotPink	Breast Mixed Ductal and Lobular Carcinoma	Breast Cancer	Breast	{}	BRCA	3
+ISMCL	LimeGreen	In Situ Mantle Cell Neoplasia	Mature B-Cell Neoplasms	Lymphoid	{}	MCL	6
+OVT	LightBlue	Ovarian Epithelial Tumor	Ovarian Cancer	Ovary/Fallopian Tube	{}	OVARY	2
+NSGCT	Red	Non-Seminomatous Germ Cell Tumor	Germ Cell Tumor	Testis	{}	TESTIS	2
+OYST	LightBlue	Yolk Sac Tumor	Germ Cell Tumor	Ovary/Fallopian Tube	{}	OGCT	3
+SPN	Purple	Solid Pseudopapillary Neoplasm of the Pancreas	Pancreatic Cancer	Pancreas	{}	PANCREAS	2
+MDSMPNU	LightSalmon	MDS/MPN	Myelodysplastic/Myeloproliferative Neoplasms	Myeloid	{}	MDS/MPN	4
+UMNC	PeachPuff	Uterine Mesonephric Carcinoma	Endometrial Cancer	Uterus	{}	UCEC	3
+IPN	Green	Intraductal Papillary Neoplasm of the Bile Duct	Hepatobiliary Cancer	Biliary Tract	{}	BILIARY_TRACT	2
+MNM	LightSalmon	Myeloid Neoplasm	Blood Cancer	Myeloid	{}	MYELOID	2
+SDCA	DarkRed	Salivary Duct Carcinoma	Salivary Gland Cancer	Head and Neck	{}	SACA	3
+AGA	SaddleBrown	Anal Gland Adenocarcinoma	Anal Cancer	Bowel	{}	BOWEL	2
+PTFL	LimeGreen	Pediatric-Type Follicular Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+BRSRCC	HotPink	Breast Carcinoma with Signet Ring	Breast Cancer	Breast	{}	BRCA	3
+TYST	Red	Yolk Sac Tumor	Germ Cell Tumor	Testis	{}	NSGCT	3
+PAAD	Purple	Pancreatic Adenocarcinoma	Pancreatic Cancer	Pancreas	{}	PANCREAS	2
+MGCT	Red	Mixed Germ Cell Tumor	Germ Cell Tumor	Testis	{}	NSGCT	3
+CECC	Teal	Cervical Clear Cell Carcinoma	Cervical Cancer	Cervix	{}	CEAD	3
+LMS	LightYellow	Leiomyosarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+AMLBCRABL1	LightSalmon	AML with BCR-ABL1	Leukemia	Myeloid	{}	AMLRGA	5
+MPN	LightSalmon	Myeloproliferative Neoplasms	Myeloproliferative Neoplasms	Myeloid	{}	MNM	3
+SGAD	Black	Sweat Gland Adenocarcinoma	Skin Cancer	Skin	{}	SKIN	2
+SCBC	Yellow	Small Cell Bladder Cancer	Bladder Cancer	Bladder/Urinary Tract	{}	BLADDER	2
+DIG	Gray	Desmoplastic Infantile Ganglioglioma	Miscellaneous Neuroepithelial Tumor	CNS/Brain	{}	MNET	3
+DMBL	Gray	Desmoplastic/Nodular Medulloblastoma	Embryonal Tumor	CNS/Brain	{}	EMBT	3
+MRT	Orange	Rhabdoid Cancer	Rhabdoid Cancer	Kidney	{}	KIDNEY	2
+IMTB	Yellow	Inflammatory Myofibroblastic Bladder Tumor	Bladder Cancer	Bladder/Urinary Tract	{}	BLADDER	2
+MELC	Gray	Melanocytoma	Melanocytoma	CNS/Brain	{}	PCNSMT	3
+BLLETV6RUNX1	LimeGreen	B-Lymphoblastic Leukemia/Lymphoma with t(12;21)(p13.2;q22.1); ETV6-RUNX1	B-Lymphoblastic Leukemia/Lymphoma	Lymphoid	{}	BLLRGA	5
+LDCHL	LimeGreen	Lymphocyte-Depleted Classical Hodgkin Lymphoma	Hodgkin Lymphoma	Lymphoid	{}	CHL	5
+APXA	Gray	Anaplastic Pleomorphic Xanthoastrocytoma	Glioma	CNS/Brain	{}	ENCG	3
+CCHM	HotPink	Carcinoma with Chondroid Metaplasia	Breast Cancer	Breast	{}	MMBC	4
+PINC	Gray	Pineocytoma	Pineal Tumor	CNS/Brain	{}	PINT	3
+AMLRGA	LightSalmon	AML with Recurrent Genetic Abnormalities	Leukemia	Myeloid	{}	AML	4
+MT	Gray	Malignant Tumor	Miscellaneous Brain Tumor	CNS/Brain	{}	MBT	3
+MCSL	LightSalmon	Mast Cell Sarcoma	Mastocytosis	Myeloid	{}	MCD	4
+BMGT	Gray	Malignant Teratoma	Germ Cell Tumor	CNS/Brain	{}	BGCT	3
+SPB	LimeGreen	Solitary Plasmacytoma of Bone	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+CCM	Gray	Clear cell Meningioma	CNS Cancer	CNS/Brain	{}	MNGT	3
+SM	LightSalmon	Systemic Mastocytosis	Mastocytosis	Myeloid	{}	MCD	4
+LECLC	Gainsboro	Lymphoepithelioma-like Carcinoma of the Lung	Non-Small Cell Lung Cancer	Lung	{}	LCLC	4
+BCLU	LimeGreen	B-Cell Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+BLLHYPO	LimeGreen	B-Lymphoblastic Leukemia/Lymphoma with Hypodiploidy	B-Lymphoblastic Leukemia/Lymphoma	Lymphoid	{}	BLLRGA	5
+CUPNOS	Black	Cancer of Unknown Primary	Cancer of Unknown Primary	Other	{}	CUP	3
+LIMNET	MediumSeaGreen	Malignant Nonepithelial Tumor of the Liver	Hepatobiliary Cancer	Liver	{}	LIVER	2
+IFS	LightYellow	Infantile Fibrosarcoma	Infantile Fibrosarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+RMS	LightYellow	Rhabdomyosarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+OCNOS	LightBlue	Ovarian Choriocarcinoma	Ovarian Cancer	Ovary/Fallopian Tube	{}	OOVC	3
+THPA	Teal	Papillary Thyroid Cancer	Thyroid Cancer	Thyroid	{}	WDTC	3
+CHRCC	Orange	Chromophobe Renal Cell Carcinoma	Renal Cell Carcinoma	Kidney	{}	NCCRCC	4
+PNS	Gray	Peripheral Nervous System	Peripheral Nervous System Cancer	Peripheral Nervous System	{}	TISSUE	1
+ANM	Gray	Anaplastic Meningioma	CNS Cancer	CNS/Brain	{}	MNGT	3
+PLBL	LimeGreen	Plasmablastic Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+LAIS	Gainsboro	Lung Adenocarcinoma In Situ	Non-Small Cell Lung Cancer	Lung	{}	LUNG	2
+UEC	PeachPuff	Uterine Endometrioid Carcinoma	Endometrial Cancer	Uterus	{}	UCEC	3
+SFTCNS	Gray	Solitary Fibrous Tumor of the Central Nervous System	CNS Cancer	CNS/Brain	{}	MNGT	3
+ENKL	LimeGreen	Extranodal NK-/T-Cell Lymphoma	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+VMA	Purple	Mucinous Adenocarcinoma of the Vulva/Vagina	Vulvar Carcinoma	Vulva/Vagina	{}	VULVA	2
+ASTR	Gray	Astrocytoma	Glioma	CNS/Brain	{}	DIFG	3
+CMML	LightSalmon	Chronic Myelomonocytic Leukemia	Myelodysplastic/Myeloproliferative Neoplasms	Myeloid	{}	MDS/MPN	4
+VA	Purple	Vaginal Adenocarcinoma	Vaginal Cancer	Vulva/Vagina	{}	VULVA	2
+GNBL	Gray	Ganglioneuroblastoma	Peripheral Nervous System	Peripheral Nervous System	{}	PNS	2
+ICPN	Green	Intracholecystic Papillary Neoplasm	Hepatobiliary Cancer	Biliary Tract	{}	BILIARY_TRACT	2
+MDSMD	LightSalmon	MDS with Multilineage Dysplasia	Myelodysplastic Syndromes	Myeloid	{}	MDS	4
+MIDDO	LimeGreen	Monoclonal Immunoglobulin Deposition Diseases	Mature B-Cell Neoplasms	Lymphoid	{}	MIDD	6
+MOV	LightBlue	Mucinous Ovarian Cancer	Ovarian Cancer	Ovary/Fallopian Tube	{}	OVT	3
+TNET	Purple	Thymic Neuroendocrine Tumor	Thymic Tumor	Thymus	{}	THYMUS	2
+GNC	Gray	Gangliocytoma	Glioma	CNS/Brain	{}	ENCG	3
+APE	Gray	Anaplastic Ependymoma	CNS Cancer	CNS/Brain	{}	EPMT	3
+CCHDM	White	Conventional Type Chordoma	Bone Cancer	Bone	{}	CHDM	3
+BTBOV	LightBlue	Brenner Tumor	Ovarian Cancer	Ovary/Fallopian Tube	{}	BTOV	4
+GSARC	Gray	Gliosarcoma	Glioma	CNS/Brain	{}	GB	4
+PTCL	LimeGreen	Peripheral T-Cell lymphoma	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+CTAAP	SaddleBrown	Colonic Type Adenocarcinoma of the Appendix	Appendiceal Cancer	Bowel	{}	APAD	3
+BGCT	Gray	Germ Cell Tumor	Germ Cell Tumor	CNS/Brain	{}	BRAIN	2
+RBL	Green	Retinoblastoma	Retinoblastoma	Eye	{}	EYE	2
+SPCC	Gainsboro	Spindle Cell Carcinoma of the Lung	Non-Small Cell Lung Cancer	Lung	{}	NSCLC	3
+ANGL	Gray	Angiocentric Glioma	Miscellaneous Neuroepithelial Tumor	CNS/Brain	{}	MNET	3
+AMLRARA	LightSalmon	AML with Variant RARA translocation	Leukemia	Myeloid	{}	AMLRGA	5
+NST	Gray	Nerve Sheath Tumor	Nerve Sheath Tumor	Peripheral Nervous System	{}	PNS	2
+MTNN	LimeGreen	Mature T and NK Neoplasms	Mature T and NK Neoplasms	Lymphoid	{}	NHL	4
+CCRCC	Orange	Renal Clear Cell Carcinoma	Renal Cell Carcinoma	Kidney	{}	RCC	3
+UUC	PeachPuff	Uterine Undifferentiated Carcinoma	Endometrial Cancer	Uterus	{}	UCEC	3
+AMLMLLT3KMT2A	LightSalmon	AML with t(9;11)(p21.3;q23.3);MLLT3-KMT2A	Leukemia	Myeloid	{}	AMLRGA	5
+EGCT	Black	Extra Gonadal Germ Cell Tumor	Germ Cell Tumor	Other	{}	OTHER	2
+BMT	Gray	Mature Teratoma	Germ Cell Tumor	CNS/Brain	{}	BGCT	3
+UCCA	PeachPuff	Choriocarcinoma	Gestational Trophoblastic Disease	Uterus	{}	GTD	3
+SCUP	Black	Small Cell Carcinoma of Unknown Primary	Cancer of Unknown Primary	Other	{}	CUP	3
+TAM	LightSalmon	Transient Abnormal Myelopoiesis	Leukemia	Myeloid	{}	MPRDS	5
+LATL	LimeGreen	Lymphoid Atypical	Lymphatic Cancer	Lymphoid	{}	LYMPH	2
+AFH	LightYellow	Angiomatoid Fibrous Histiocytoma	Angiomatoid Fibrous Histiocytoma	Soft Tissue	{}	SOFT_TISSUE	2
+IAMPCA	Purple	Intestinal Ampullary Carcinoma	Ampullary Cancer	Ampulla of Vater	{}	AMPCA	3
+MLADS	LightSalmon	Myeloid Leukemia Associated with Down Syndrome	Leukemia	Myeloid	{}	MPRDS	5
+USTAD	LightSkyBlue	Undifferentiated Stomach Adenocarcinoma	Esophagogastric Cancer	Esophagus/Stomach	{}	EGC	3
+CESE	Teal	Cervical Serous Carcinoma	Cervical Cancer	Cervix	{}	CEAD	3
+LYMPH	LimeGreen	Lymphoid	Lymphatic Cancer	Lymphoid	{}	TISSUE	1
+LGGNOS	Gray	Low-Grade Glioma	Glioma	CNS/Brain	{}	ENCG	3
+APLPMLRARA	LightSalmon	APL with PML-RARA	Leukemia	Myeloid	{}	AMLRGA	5
+MLYM	Gray	Malignant Lymphoma	Miscellaneous Brain Tumor	CNS/Brain	{}	MBT	3
+SRCC	Orange	Sarcomatoid Renal Cell Carcinoma	Renal Cell Carcinoma	Kidney	{}	NCCRCC	4
+BCCP	Cyan	Basal Cell Carcinoma of Prostate	Prostate Cancer	Prostate	{}	PROSTATE	2
+BRAME	HotPink	Adenomyoepithelioma of the Breast	Breast Cancer	Breast	{}	BREAST	2
+AITL	LimeGreen	Angioimmunoblastic T-Cell Lymphoma	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+PAAC	Purple	Acinar Cell Carcinoma of the Pancreas	Pancreatic Cancer	Pancreas	{}	PANCREAS	2
+PINT	Gray	Pineal Tumor	Pineal Tumor	CNS/Brain	{}	BRAIN	2
+MDSRS	LightSalmon	MDS with Ring Sideroblasts	Myelodysplastic Syndromes	Myeloid	{}	MDS	4
+HS	LightSalmon	Histiocytic Sarcoma	Histiocytosis	Myeloid	{}	HDCN	4
+CHLPTLD	LimeGreen	Classical Hodgkin Lymphoma PTLD	Posttransplant Lymphoproliferative Disorders	Lymphoid	{}	PTLD	4
+SRCCR	SaddleBrown	Signet Ring Cell Adenocarcinoma of the Colon and Rectum	Colorectal Cancer	Bowel	{}	COADREAD	3
+OIMT	LightBlue	Immature Teratoma	Germ Cell Tumor	Ovary/Fallopian Tube	{}	OGCT	3
+VGCE	Teal	Villoglandular Adenocarcinoma of the Cervix	Cervical Cancer	Cervix	{}	CERVIX	2
+MPALKMT2A	LightSalmon	Mixed Phenotype Acute Leukemia with t(v;11q23.3); KMT2A Rearranged	Leukemia	Myeloid	{}	ALAL	4
+UELMS	PeachPuff	Uterine Epithelioid Leiomyosarcoma	Uterine Sarcoma	Uterus	{}	USMT	4
+PRSC	Cyan	Prostate Squamous Cell Carcinoma	Prostate Cancer	Prostate	{}	PROSTATE	2
+HCL	LimeGreen	Hairy Cell Leukemia	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+CESC	Teal	Cervical Squamous Cell Carcinoma	Cervical Cancer	Cervix	{}	CERVIX	2
+SYNS	LightYellow	Synovial Sarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+ERMS	LightYellow	Embryonal Rhabdomyosarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	RMS	3
+EYE	Green	Eye	Eye Cancer	Eye	{}	TISSUE	1
+ASM	LightSalmon	Aggressive Systemic Mastocytosis	Mastocytosis	Myeloid	{}	SM	5
+UM	Green	Uveal Melanoma	Melanoma	Eye	{}	OM	3
+CHOL	Green	Cholangiocarcinoma	Hepatobiliary Cancer	Biliary Tract	{}	BILIARY_TRACT	2
+ESST	LightYellow	Ewing Sarcoma of Soft Tissue	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+MDS/MPN	LightSalmon	Myelodysplastic/Myeloproliferative Neoplasms	Myelodysplastic/Myeloproliferative Neoplasms	Myeloid	{}	MNM	3
+FL	LimeGreen	Follicular Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+SGTTL	Gainsboro	Salivary Gland-Type Tumor of the Lung	Non-Small Cell Lung Cancer	Lung	{}	NSCLC	3
+PTH	DarkRed	Parathyroid Cancer	Parathyroid Cancer	Head and Neck	{}	HEAD_NECK	2
+BOWEL	SaddleBrown	Bowel	Bowel Cancer	Bowel	{}	TISSUE	1
+WT	Orange	Wilms' Tumor	Wilms Tumor	Kidney	{}	KIDNEY	2
+TET	Purple	Thymic Epithelial Tumor	Thymic Tumor	Thymus	{}	THYMUS	2
+IUP	Yellow	Inverted Urothelial Papilloma	Bladder Cancer	Bladder/Urinary Tract	{}	BLADDER	2
+TLL	LimeGreen	T-Lymphoblastic Leukemia/Lymphoma	T-Lymphoblastic Leukemia/Lymphoma	Lymphoid	{}	LNM	3
+SS	LimeGreen	Sezary Syndrome	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+HGNEC	SaddleBrown	High-Grade Neuroendocrine Carcinoma of the Colon and Rectum	Gastrointestinal Neuroendocrine Tumor	Bowel	{}	GINET	3
+AODG	Gray	Anaplastic Oligodendroglioma	Glioma	CNS/Brain	{}	DIFG	3
+PORO	Black	Poroma/Acrospiroma	Skin Cancer	Skin	{}	SKIN	2
+HTAT	Teal	Hyalinizing Trabecular Adenoma of the Thyroid	Thyroid Cancer	Thyroid	{}	THYROID	2
+LDD	Gray	Dysplastic Gangliocytoma of the Cerebellum/Lhermitte-Duclos Disease	Miscellaneous Neuroepithelial Tumor	CNS/Brain	{}	MNET	3
+HGSFT	LightBlue	High-Grade Serous Fallopian Tube Cancer	Ovarian Cancer	Ovary/Fallopian Tube	{}	OOVC	3
+NMCHN	DarkRed	NUT Midline Carcinoma of the Head and Neck	Head and Neck Cancer	Head and Neck	{}	OHNCA	3
+UMLMS	PeachPuff	Uterine Myxoid Leiomyosarcoma	Uterine Sarcoma	Uterus	{}	USMT	4
+HEAD_NECK	DarkRed	Head and Neck	Head and Neck Cancer	Head and Neck	{}	TISSUE	1
+UDMN	Black	Undifferentiated Malignant Neoplasm	Cancer of Unknown Primary	Other	{}	CUP	3
+ACRM	Black	Acral Melanoma	Melanoma	Skin	{}	MEL	3
+MLNPDGFRA	LightSalmon	Myeloid/Lymphoid Neoplasms with PDGFRA Rearrangement	Leukemia	Myeloid	{}	MLNER	4
+PHC	Purple	Pheochromocytoma	Pheochromocytoma	Adrenal Gland	{}	ADRENAL_GLAND	2
+ATLL	LimeGreen	Adult T-Cell Leukemia/Lymphoma	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+THRLBCL	LimeGreen	T-Cell/Histiocyte-Rich Large B-Cell Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+PTAD	Gray	Pituitary Adenoma	Sellar Tumor	CNS/Brain	{}	SELT	3
+ESMM	LightSkyBlue	Mucosal Melanoma of the Esophagus	Melanoma	Esophagus/Stomach	{}	STOMACH	2
+MNG	Gray	Meningioma	CNS Cancer	CNS/Brain	{}	MNGT	3
+LIPO	LightYellow	Liposarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+LBLIRF4	LimeGreen	Large B-Cell Lymphoma with IRF4 Rearrangement	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+DCIS	HotPink	Breast Ductal Carcinoma In Situ	Breast Cancer	Breast	{}	BREAST	2
+TT	Red	Teratoma	Germ Cell Tumor	Testis	{}	NSGCT	3
+PCSMTPLD	LimeGreen	Primary Cutaneous CD4 Positive Small/Medium T-Cell Lymphoproliferative Disorder	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+AMML	LightSalmon	Acute Myelomonocytic Leukemia	Leukemia	Myeloid	{}	AMLNOS	5
+ESCA	LightSkyBlue	Esophageal Adenocarcinoma	Esophagogastric Cancer	Esophagus/Stomach	{}	EGC	3
+MCC	Black	Merkel Cell Carcinoma	Skin Cancer	Skin	{}	SKIN	2
+URCC	Orange	Unclassified Renal Cell Carcinoma	Renal Cell Carcinoma	Kidney	{}	NCCRCC	4
+MCD	LightSalmon	Mastocytosis	Mastocytosis	Myeloid	{}	MNM	3
+URCA	Yellow	Urachal Carcinoma	Bladder Cancer	Bladder/Urinary Tract	{}	BLADDER	2
+OMT	LightBlue	Mature Teratoma	Germ Cell Tumor	Ovary/Fallopian Tube	{}	OGCT	3
+LYG	LimeGreen	Lymphomatoid Granulomatosis	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+SPDAC	LightSkyBlue	Poorly Differentiated Carcinoma of the Stomach	Esophagogastric Cancer	Esophagus/Stomach	{}	USTAD	4
+NUTCL	Gainsboro	NUT Carcinoma of the Lung	Non-Small Cell Lung Cancer	Lung	{}	NSCLC	3
+SEF	LightYellow	Sclerosing Epithelioid Fibrosarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	FIBS	3
+AECA	Black	Sweat Gland Carcinoma/Apocrine Eccrine Carcinoma	Skin Cancer	Skin	{}	SKIN	2
+ETMF	LightSalmon	Essential Thrombocythemia Myelofibrosis	Myeloproliferative Neoplasms	Myeloid	{}	ET	5
+GINETES	LightSkyBlue	Gastrointestinal Neuroendocrine Tumors of the Esophagus/Stomach	Esophagogastric Cancer	Esophagus/Stomach	{}	STOMACH	2
+OAST	Gray	Oligoastrocytoma	Glioma	CNS/Brain	{}	DIFG	3
+DES	LightYellow	Desmoid/Aggressive Fibromatosis	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+PAASC	Purple	Adenosquamous Carcinoma of the Pancreas	Pancreatic Cancer	Pancreas	{}	PANCREAS	2
+SNSC	DarkRed	Sinonasal Squamous Cell Carcinoma	Head and Neck Cancer	Head and Neck	{}	HNSC	3
+ALCLALKP	LimeGreen	Anaplastic Large-Cell Lymphoma ALK Positive	Mature T and NK Neoplasms	Lymphoid	{}	ALCL	6
+MDSRSSLD	LightSalmon	MDS with Ring Sideroblasts and Single Lineage Dysplasia	Myelodysplastic Syndromes	Myeloid	{}	MDSRS	5
+BRCA	HotPink	Invasive Breast Carcinoma	Breast Cancer	Breast	{}	BREAST	2
+IHCH	Green	Intrahepatic Cholangiocarcinoma	Hepatobiliary Cancer	Biliary Tract	{}	CHOL	3
+ODGC	DarkRed	Odontogenic Carcinoma	Head and Neck Cancer	Head and Neck	{}	OHNCA	3
+EBVMCU	LimeGreen	EBV Positive Mucocutaneous Ulcer	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+LCLC	Gainsboro	Large Cell Lung Carcinoma	Non-Small Cell Lung Cancer	Lung	{}	NSCLC	3
+STAS	LightSkyBlue	Adenosquamous Carcinoma of the Stomach	Esophagogastric Cancer	Esophagus/Stomach	{}	EGC	3
+COAD	SaddleBrown	Colon Adenocarcinoma	Colorectal Cancer	Bowel	{}	COADREAD	3
+SCT	LightBlue	Steroid Cell Tumor	Sex Cord Stromal Tumor	Ovary/Fallopian Tube	{}	SCST	3
+EHAE	LightYellow	Epithelioid Hemangioendothelioma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+EMBT	Gray	Embryonal Tumor	Embryonal Tumor	CNS/Brain	{}	BRAIN	2
+READ	SaddleBrown	Rectal Adenocarcinoma	Colorectal Cancer	Bowel	{}	COADREAD	3
+CNC	Gray	Central Neurocytoma	Miscellaneous Neuroepithelial Tumor	CNS/Brain	{}	MNET	3
+UCS	PeachPuff	Uterine Carcinosarcoma/Uterine Malignant Mixed Mullerian Tumor	Endometrial Cancer	Uterus	{}	UCEC	3
+BLLBCRABL1	LimeGreen	B-Lymphoblastic Leukemia/Lymphoma with t(9;22)(q34.1;q11.2);BCR-ABL1	B-Lymphoblastic Leukemia/Lymphoma	Lymphoid	{}	BLLRGA	5
+HDCN	LightSalmon	Histiocytic and Dendritic Cell Neoplasms	Histiocytosis	Myeloid	{}	MNM	3
+MTSCC	Orange	Renal Mucinous Tubular Spindle Cell Carcinoma	Renal Cell Carcinoma	Kidney	{}	NCCRCC	4
+MP	PeachPuff	Molar Pregnancy	Gestational Trophoblastic Disease	Uterus	{}	GTD	3
+MDS	LightSalmon	Myelodysplastic Syndromes	Myelodysplastic Syndromes	Myeloid	{}	MNM	3
+VPE	Purple	Polyembryoma	Germ Cell Tumor	Vulva/Vagina	{}	VGCT	3
+FHPTLD	LimeGreen	Florid Follicular Hyperplasia PTLD	Posttransplant Lymphoproliferative Disorders	Lymphoid	{}	PTLD	4
+URMM	Yellow	Mucosal Melanoma of the Urethra	Melanoma	Bladder/Urinary Tract	{}	BLADDER	2
+BLL11Q	LimeGreen	Burkitt-Like Lymphoma with 11q Aberration	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+SNUC	DarkRed	Sinonasal Undifferentiated Carcinoma	Head and Neck Cancer	Head and Neck	{}	OHNCA	3
+EGC	LightSkyBlue	Esophagogastric Adenocarcinoma	Esophagogastric Cancer	Esophagus/Stomach	{}	STOMACH	2
+MDSEB	LightSalmon	MDS with Excess Blasts	Myelodysplastic Syndromes	Myeloid	{}	MDS	4
+MYXO	LightYellow	Myxoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+DF	Black	Dermatofibroma	Skin Cancer	Skin	{}	SKIN	2
+CCLC	Gainsboro	Clear Cell Carcinoma of the Lung	Non-Small Cell Lung Cancer	Lung	{}	LCLC	4
+NBL	Gray	Neuroblastoma	Peripheral Nervous System	Peripheral Nervous System	{}	PNS	2
+RDD	LightSalmon	Rosai-Dorfman Disease	Histiocytosis	Myeloid	{}	HDCN	4
+DDCHDM	White	Dedifferentiated Chordoma	Bone Cancer	Bone	{}	CHDM	3
+IDCT	LightSalmon	Indeterminate Dendritic Cell Tumor	Histiocytosis	Myeloid	{}	HDCN	4
+LUAD	Gainsboro	Lung Adenocarcinoma	Non-Small Cell Lung Cancer	Lung	{}	NSCLC	3
+SLCT	LightBlue	Sertoli-Leydig Cell Tumor	Sex Cord Stromal Tumor	Ovary/Fallopian Tube	{}	SCST	3
+INTS	LightYellow	Intimal Sarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+UAD	Yellow	Urethral Adenocarcinoma	Bladder Cancer	Bladder/Urinary Tract	{}	UCA	3
+PROSTATE	Cyan	Prostate	Prostate Cancer	Prostate	{}	TISSUE	1
+FTCL	LimeGreen	Follicular T-Cell Lymphoma	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+HCC	MediumSeaGreen	Hepatocellular Carcinoma	Hepatobiliary Cancer	Liver	{}	LIVER	2
+ACN	Black	Acinar Cell Carcinoma	Cancer of Unknown Primary	Other	{}	CUP	3
+MDSEB2	LightSalmon	MDS with excess blasts-2	Myelodysplastic Syndromes	Myeloid	{}	MDSEB	5
+PLMESO	Blue	Pleural Mesothelioma	Mesothelioma	Pleura	{}	PLEURA	2
+NCCRCC	Orange	Renal Non-Clear Cell Carcinoma	Renal Cell Carcinoma	Kidney	{}	RCC	3
+LBGN	LimeGreen	Lymphoid Benign	Lymphatic Cancer	Lymphoid	{}	LYMPH	2
+COADREAD	SaddleBrown	Colorectal Adenocarcinoma	Colorectal Cancer	Bowel	{}	BOWEL	2
+VGCT	Purple	Germ Cell Tumor of the Vulva	Germ Cell Tumor	Vulva/Vagina	{}	VULVA	2
+MPE	Gray	Myxopapillary Ependymoma	CNS Cancer	CNS/Brain	{}	EPMT	3
+CLNC	Gray	Cerebellar Liponeurocytoma	Miscellaneous Neuroepithelial Tumor	CNS/Brain	{}	MNET	3
+PGNG	Gray	Paraganglioma	Miscellaneous Neuroepithelial Tumor	Soft Tissue	{}	SOFT_TISSUE	2
+MYELOID	LightSalmon	Myeloid	Blood Cancer	Myeloid	{}	TISSUE	1
+EMALT	LimeGreen	Extranodal Marginal Zone Lymphoma of Mucosa-Associated Lymphoid Tissue (MALT lymphoma)	Mature B-Cell Neoplasms	Lymphoid	{}	MZL	6
+BONE	White	Bone	Bone Cancer	Bone	{}	TISSUE	1
+AMLRBM15MKL1	LightSalmon	AML (megakaryoblastic) with t(1;22)(p13.3;q13.3);RBM15-MKL1	Leukemia	Myeloid	{}	AMLRGA	5
+IPMN	Purple	Intraductal Papillary Mucinous Neoplasm	Pancreatic Cancer	Pancreas	{}	PACT	3
+MGUS	LimeGreen	Monoclonal Gammopathy of Undetermined Significance	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+BILIARY_TRACT	Green	Biliary Tract	Biliary Tract Cancer	Biliary Tract	{}	TISSUE	1
+EMPD	Black	Extramammary Paget Disease	Skin Cancer	Skin	{}	SKIN	2
+CHOS	White	Chondroblastic Osteosarcoma	Bone Cancer	Bone	{}	OS	3
+RLCLC	Gainsboro	Large Cell Lung Carcinoma With Rhabdoid Phenotype	Non-Small Cell Lung Cancer	Lung	{}	LCLC	4
+OSACA	DarkRed	Salivary Carcinoma	Salivary Gland Cancer	Head and Neck	{}	SACA	3
+PANET	Purple	Pancreatic Neuroendocrine Tumor	Pancreatic Cancer	Pancreas	{}	PANCREAS	2
+GINET	SaddleBrown	Gastrointestinal Neuroendocrine Tumors	Gastrointestinal Neuroendocrine Tumor	Bowel	{}	BOWEL	2
+SFT	LightYellow	Solitary Fibrous Tumor/Hemangiopericytoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+EPM	Gray	Ependymoma	Glioma	CNS/Brain	{}	EPMT	3
+HMBL	Gray	Hemangioblastoma	Miscellaneous Brain Tumor	CNS/Brain	{}	MBT	3
+HGSOS	White	High-Grade Surface Osteosarcoma	Bone Cancer	Bone	{}	OS	3
+TLYM	Red	Testicular Lymphoma	Non-Hodgkin Lymphoma	Testis	{}	TESTIS	2
+PNET	Gray	Primitive Neuroectodermal Tumor	Embryonal Tumor	CNS/Brain	{}	EMBT	3
+TMESO	Red	Testicular Mesothelioma	Mesothelioma	Testis	{}	TESTIS	2
+PAST	Gray	Pilocytic Astrocytoma	Glioma	CNS/Brain	{}	ENCG	3
+DFSP	Black	Dermatofibrosarcoma Protuberans	Skin Cancer	Skin	{}	SKIN	2
+THAP	Teal	Anaplastic Thyroid Cancer	Thyroid Cancer	Thyroid	{}	THYROID	2
+SKLMM	Black	Lentigo Maligna Melanoma	Melanoma	Skin	{}	MEL	3
+TGCT	LightYellow	Tenosynovial Giant Cell Tumor Diffuse Type	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+PTCY	Gray	Pituicytoma	Sellar Tumor	CNS/Brain	{}	SELT	3
+ASCT	DarkRed	Adenosquamous Carcinoma of the Tongue	Head and Neck Cancer	Head and Neck	{}	OHNCA	3
+BNNOS	HotPink	Breast Neoplasm	Breast Cancer	Breast	{}	BREAST	2
+MACR	SaddleBrown	Mucinous Adenocarcinoma of the Colon and Rectum	Colorectal Cancer	Bowel	{}	COADREAD	3
+IBC	HotPink	Inflammatory Breast Cancer	Breast Cancer	Breast	{}	BREAST	2
+GTD	PeachPuff	Gestational Trophoblastic Disease	Gestational Trophoblastic Disease	Uterus	{}	UTERUS	2
+TMN	LightSalmon	Therapy-Related Myeloid Neoplasms	Leukemia	Myeloid	{}	AML	4
+MNET	Gray	Miscellaneous Neuroepithelial Tumor	Miscellaneous Neuroepithelial Tumor	CNS/Brain	{}	BRAIN	2
+MEITL	LimeGreen	Monomorphic Epitheliotropic Intestinal T-Cell Lymphoma	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+PRAD	Cyan	Prostate Adenocarcinoma	Prostate Cancer	Prostate	{}	PROSTATE	2
+MRTL	MediumSeaGreen	Malignant Rhabdoid Tumor of the Liver	Malignant Rhabdoid Tumor of the Liver	Liver	{}	LIVER	2
+NKCLL	LimeGreen	Natural Killer (NK) Cell Lymphoblastic Leukemia/Lymphoma	T-Lymphoblastic Leukemia/Lymphoma	Lymphoid	{}	TLL	4
+OSOS	White	Osteoblastic Osteosarcoma	Bone Cancer	Bone	{}	OS	3
+AIS	Black	Adenocarcinoma In Situ	Adenocarcinoma In Situ	Other	{}	OTHER	2
+AASTR	Gray	Anaplastic Astrocytoma	Glioma	CNS/Brain	{}	DIFG	3
+VIMT	Purple	Immature Teratoma	Germ Cell Tumor	Vulva/Vagina	{}	VGCT	3
+AMLDEKNUP214	LightSalmon	AML with t(6;9)(p23;q34.1);DEK-NUP214	Leukemia	Myeloid	{}	AMLRGA	5
+MGUSIGA	LimeGreen	IgA	Mature B-Cell Neoplasms	Lymphoid	{}	MGUS	6
+KIDNEY	Orange	Kidney	Kidney Cancer	Kidney	{}	TISSUE	1
+MDEP	Gray	Medulloepithelioma	Embryonal Tumor	CNS/Brain	{}	EMBT	3
+SSM	LightSalmon	Smoldering Systemic Mastocytosis	Mastocytosis	Myeloid	{}	SM	5
+CMML2	LightSalmon	Chronic Myelomonocytic Leukemia-2	Myelodysplastic/Myeloproliferative Neoplasms	Myeloid	{}	CMML	5
+HNSCUP	DarkRed	Head and Neck Squamous Cell Carcinoma of Unknown Primary	Head and Neck Cancer	Head and Neck	{}	HNSC	3
+IMS	LightYellow	Myofibromatosis	Myofibromatosis	Soft Tissue	{}	SOFT_TISSUE	2
+SMN	LightSkyBlue	Smooth Muscle Neoplasm	Esophagogastric Cancer	Esophagus/Stomach	{}	STOMACH	2
+PRSCC	Cyan	Prostate Small Cell Carcinoma	Prostate Cancer	Prostate	{}	PROSTATE	2
+DSTAD	LightSkyBlue	Diffuse Type Stomach Adenocarcinoma	Esophagogastric Cancer	Esophagus/Stomach	{}	STAD	4
+SECOS	White	Secondary Osteosarcoma	Bone Cancer	Bone	{}	OS	3
+NMZL	LimeGreen	Nodal Marginal Zone Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	MZL	6
+PT	HotPink	Phyllodes Tumor of the Breast	Breast Sarcoma	Breast	{}	BFN	3
+MSCHW	Gray	Melanotic Schwannoma	Nerve Sheath Tumor	Peripheral Nervous System	{}	SCHW	4
+ACPG	Gray	Craniopharyngioma	Sellar Tumor	CNS/Brain	{}	SELT	3
+SCCE	Teal	Small Cell Carcinoma of the Cervix	Cervical Cancer	Cervix	{}	CERVIX	2
+NPTLTFH	LimeGreen	Nodal Peripheral T-Cell Lymphoma with TFH Phenotype	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+VMM	Purple	Mucosal Melanoma of the Vulva/Vagina	Melanoma	Vulva/Vagina	{}	VULVA	2
+MGST	LightYellow	Malignant Glomus Tumor	Malignant Glomus Tumor	Soft Tissue	{}	SOFT_TISSUE	2
+BTMOV	LightBlue	Brenner Tumor	Ovarian Cancer	Ovary/Fallopian Tube	{}	BTOV	4
+CHDM	White	Chordoma	Bone Cancer	Bone	{}	BONE	2
+ACPP	Gray	Atypical Choroid Plexus Papilloma	Choroid Plexus Tumor	CNS/Brain	{}	CPT	3
+PSTAD	LightSkyBlue	Papillary Stomach Adenocarcinoma	Esophagogastric Cancer	Esophagus/Stomach	{}	STAD	4
+MEL	Black	Melanoma	Melanoma	Skin	{}	SKIN	2
+CM	Green	Conjunctival Melanoma	Melanoma	Eye	{}	OM	3
+HGNEE	LightSkyBlue	High-Grade Neuroendocrine Carcinoma of the Esophagus	Gastrointestinal Neuroendocrine Tumors of the Esophagus/Stomach	Esophagus/Stomach	{}	GINETES	3
+MAMPCA	Purple	Mixed Ampullary Carcinoma	Ampullary Cancer	Ampulla of Vater	{}	AMPCA	3
+PRCC	Orange	Papillary Renal Cell Carcinoma	Renal Cell Carcinoma	Kidney	{}	NCCRCC	4
+BLPT	HotPink	Borderline Phyllodes Tumor of the Breast	Breast Sarcoma	Breast	{}	PT	4
+LUPC	Gainsboro	Pleomorphic Carcinoma of the Lung	Non-Small Cell Lung Cancer	Lung	{}	NSCLC	3
+VMGCT	Purple	Mixed Germ Cell Tumor	Germ Cell Tumor	Vulva/Vagina	{}	VGCT	3
+GCLC	Gainsboro	Giant Cell Carcinoma of the Lung	Non-Small Cell Lung Cancer	Lung	{}	LCLC	4
+OFMT	LightYellow	Ossifying Fibromyxoid Tumor	Soft Tissue Sarcoma	Soft Tissue	{}	MYXO	3
+BPDCN	LightSalmon	Blastic Plasmacytoid Dendritic Cell Neoplasm	Blastic Plasmacytoid Dendritic Cell Neoplasm	Myeloid	{}	MNM	3
+PACT	Purple	Cystic Tumor of the Pancreas	Pancreatic Cancer	Pancreas	{}	PANCREAS	2
+EHCH	Green	Extrahepatic Cholangiocarcinoma	Hepatobiliary Cancer	Biliary Tract	{}	CHOL	3
+LUSC	Gainsboro	Lung Squamous Cell Carcinoma	Non-Small Cell Lung Cancer	Lung	{}	NSCLC	3
+FLC	MediumSeaGreen	Fibrolamellar Carcinoma	Hepatobiliary Cancer	Liver	{}	LIVER	2
+TAML	LightSalmon	Therapy-Related Acute Myeloid Leukemia	Leukemia	Myeloid	{}	TMN	5
+CMC	SaddleBrown	Medullary Carcinoma of the Colon	Colorectal Cancer	Bowel	{}	BOWEL	2
+APTAD	Gray	Atypical Pituitary Adenoma	Sellar Tumor	CNS/Brain	{}	SELT	3
+ATM	Gray	Atypical Meningioma	CNS Cancer	CNS/Brain	{}	MNGT	3
+MYCF	LimeGreen	Mycosis Fungoides	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+MASCC	HotPink	Metaplastic Adenocarcinoma with Spindle Cell Differentiation	Breast Cancer	Breast	{}	EMBC	4
+CHOM	Gray	Chordoid Meningioma	CNS Cancer	CNS/Brain	{}	MNGT	3
+LUNG	Gainsboro	Lung	Lung Cancer	Lung	{}	TISSUE	1
+ALT	LightYellow	Atypical Lipomatous Tumor	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+VPDC	Purple	Poorly Differentiated Vaginal Carcinoma	Vaginal Cancer	Vulva/Vagina	{}	VULVA	2
+AFX	Black	Atypical Fibroxanthoma	Skin Cancer	Skin	{}	SKIN	2
+MBOV	LightBlue	Mucinous Borderline Ovarian Tumor	Ovarian Cancer	Ovary/Fallopian Tube	{}	OVT	3
+PMA	Gray	Pilomyxoid Astrocytoma	Glioma	CNS/Brain	{}	ENCG	3
+PSCC	Blue	Penile Squamous Cell Carcinoma	Penile Cancer	Penis	{}	PENIS	2
+CEAIS	Teal	Cervical Adenocarcinoma In Situ	Cervical Cancer	Cervix	{}	CERVIX	2
+ODYS	LightBlue	Dysgerminoma	Germ Cell Tumor	Ovary/Fallopian Tube	{}	OGCT	3
+FHRCC	Orange	FH-Deficient Renal Cell Carcinoma	Renal Cell Carcinoma	Kidney	{}	NCCRCC	4
+PD	HotPink	Paget Disease of the Nipple	Breast Cancer	Breast	{}	DCIS	3
+FRCT	LightSalmon	Fibroblastic Reticular Cell Tumor	Histiocytosis	Myeloid	{}	HDCN	4
+AUL	LightSalmon	Acute Undifferentiated Leukemia	Leukemia	Myeloid	{}	ALAL	4
+TLGL	LimeGreen	T-Cell Large Granular Lymphocytic Leukemia	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+ARMM	SaddleBrown	Anorectal Mucosal Melanoma	Melanoma	Bowel	{}	BOWEL	2
+DLBCLNOS	LimeGreen	Diffuse Large B-Cell Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+TISSUE	null	Tissue	null	null	{}	null	0
+PCLPD	LimeGreen	Primary Cutaneous CD30 Positive T-Cell Lymphoproliferative Disorders	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+PMFOFS	LightSalmon	Primary Myelofibrosis	Myeloproliferative Neoplasms	Myeloid	{}	PMF	5
+PCNSM	LightSkyBlue	Primary CNS Melanoma	Melanoma	CNS/Brain	{}	PCNSMT	3
+THME	Teal	Medullary Thyroid Cancer	Thyroid Cancer	Thyroid	{}	THYROID	2
+IDC	HotPink	Breast Invasive Ductal Carcinoma	Breast Cancer	Breast	{}	BRCA	3
+TSTAD	LightSkyBlue	Tubular Stomach Adenocarcinoma	Esophagogastric Cancer	Esophagus/Stomach	{}	STAD	4
+NSCLCPD	Gainsboro	Poorly Differentiated Non-Small Cell Lung Cancer	Non-Small Cell Lung Cancer	Lung	{}	NSCLC	3
+UNEC	PeachPuff	Uterine Neuroendocrine Carcinoma	Endometrial Cancer	Uterus	{}	UCEC	3
+CHL	LimeGreen	Classical Hodgkin Lymphoma	Hodgkin Lymphoma	Lymphoid	{}	HL	4
+OSMAD	LightBlue	Ovarian Seromucinous Adenoma	Ovarian Cancer	Ovary/Fallopian Tube	{}	OVT	3
+BLCA	Yellow	Bladder Urothelial Carcinoma	Bladder Cancer	Bladder/Urinary Tract	{}	BLADDER	2
+CSNOS	HotPink	Breast Invasive Carcinosarcoma	Breast Cancer	Breast	{}	BRCA	3
+PPTLD	LimeGreen	Polymorphic PTLD	Posttransplant Lymphoproliferative Disorders	Lymphoid	{}	PTLD	4
+USCC	Yellow	Urethral Squamous Cell Carcinoma	Bladder Cancer	Bladder/Urinary Tract	{}	UCA	3
+CELI	Teal	Cervical Leiomyosarcoma	Cervical Cancer	Cervix	{}	CERVIX	2
+EMCHS	White	Extraskeletal Myxoid Chondrosarcoma	Bone Cancer	Bone	{}	CHS	3
+HHV8DLBCL	LimeGreen	HHV8 Positive DLBCL	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+ONBL	Gray	Olfactory Neuroblastoma	Embryonal Tumor	CNS/Brain	{}	EMBT	3
+HGONEC	LightBlue	High-Grade Neuroendocrine Carcinoma of the Ovary	Ovarian Cancer	Ovary/Fallopian Tube	{}	OOVC	3
+SPZM	Black	Spitzoid Melanoma	Melanoma	Skin	{}	MEL	3
+IMTL	Gainsboro	Inflammatory Myofibroblastic Lung Tumor	Non-Small Cell Lung Cancer	Lung	{}	LUNG	2
+BLLIL3IGH	LimeGreen	B-Lymphoblastic Leukemia/Lymphoma with t(5;14)(q31.1;q32.3) IL3-IGH	B-Lymphoblastic Leukemia/Lymphoma	Lymphoid	{}	BLLRGA	5
+PBS	HotPink	Breast Sarcoma	Breast Sarcoma	Breast	{}	BREAST	2
+UMC	PeachPuff	Uterine Mucinous Carcinoma	Endometrial Cancer	Uterus	{}	UCEC	3
+VMT	Purple	Mature Teratoma	Germ Cell Tumor	Vulva/Vagina	{}	VGCT	3
+SMMCL	LightSalmon	Mast Cell Leukemia	Mastocytosis	Myeloid	{}	SM	5
+MPC	LightYellow	Myopericytoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+ASTB	Gray	Astroblastoma	Miscellaneous Neuroepithelial Tumor	CNS/Brain	{}	MNET	3
+ICEMU	Teal	Intestinal Type Mucinous Carcinoma	Cervical Cancer	Cervix	{}	CEMU	4
+DDCHS	White	Dedifferentiated Chondrosarcoma	Bone Cancer	Bone	{}	CHS	3
+SACA	DarkRed	Salivary Carcinoma	Salivary Gland Cancer	Head and Neck	{}	HEAD_NECK	2
+PADA	DarkRed	Pleomorphic Adenoma	Salivary Gland Cancer	Head and Neck	{}	SACA	3
+PLRMS	LightYellow	Pleomorphic Rhabdomyosarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	RMS	3
+PANCREAS	Purple	Pancreas	Pancreatic Cancer	Pancreas	{}	TISSUE	1
+HNMUCM	DarkRed	Head and Neck Mucosal Melanoma	Melanoma	Head and Neck	{}	HEAD_NECK	2
+AML	LightSalmon	Acute Myeloid Leukemia	Leukemia	Myeloid	{}	MNM	3
+RWDNET	SaddleBrown	Well-Differentiated Neuroendocrine Tumor of the Rectum	Gastrointestinal Neuroendocrine Tumor	Bowel	{}	GINET	3
+CCOC	DarkRed	Clear Cell Odontogenic Carcinoma	Head and Neck Cancer	Head and Neck	{}	ODGC	4
+MBN	LimeGreen	Mature B-Cell Neoplasms	Mature B-Cell Neoplasms	Lymphoid	{}	NHL	4
+HGBCLMYCBCL2	LimeGreen	High-Grade B-Cell Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+LNET	Gainsboro	Lung Neuroendocrine Tumor	Non-Small Cell Lung Cancer	Lung	{}	LUNG	2
+CLLSLL	LimeGreen	Chronic Lymphocytic Leukemia/Small Lymphocytic Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+LPL	LimeGreen	Lymphoplasmacytic Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+LUACC	Gainsboro	Adenoid Cystic Carcinoma of the Lung	Non-Small Cell Lung Cancer	Lung	{}	SGTTL	4
+MAAP	SaddleBrown	Mucinous Adenocarcinoma of the Appendix	Appendiceal Cancer	Bowel	{}	APAD	3
+AMKL	LightSalmon	Acute Megakaryoblastic Leukemia	Leukemia	Myeloid	{}	AMLNOS	5
+ABC	LimeGreen	Activated B-cell Type	Mature B-Cell Neoplasms	Lymphoid	{}	DLBCLNOS	6
+PMHE	LightYellow	Pseudomyogenic Hemangioendothelioma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+PRNET	Gray	Primary Neuroepithelial Tumor	Miscellaneous Brain Tumor	CNS/Brain	{}	MBT	3
+STOMACH	LightSkyBlue	Esophagus/Stomach	Esophageal/Stomach Cancer	Esophagus/Stomach	{}	TISSUE	1
+BA	HotPink	Breast Angiosarcoma	Breast Sarcoma	Breast	{}	PBS	3
+SKIN	Black	Skin	Skin Cancer	Skin	{}	TISSUE	1
+HGNET	Gray	High-Grade Neuroepithelial Tumor	Miscellaneous Brain Tumor	CNS/Brain	{}	MBT	3
+CELNOS	LightSalmon	Chronic Eosinophilic Leukemia	Myeloproliferative Neoplasms	Myeloid	{}	MPN	4
+ECAD	Teal	Endocervical Adenocarcinoma	Cervical Cancer	Cervix	{}	CEAD	3
+SOC	LightBlue	Serous Ovarian Cancer	Ovarian Cancer	Ovary/Fallopian Tube	{}	OVT	3
+BLSC	Yellow	Bladder Squamous Cell Carcinoma	Bladder Cancer	Bladder/Urinary Tract	{}	BLADDER	2
+MBL	Gray	Medulloblastoma	Embryonal Tumor	CNS/Brain	{}	EMBT	3
+CHBL	White	Chondroblastoma	Bone Cancer	Bone	{}	BONE	2
+ES	White	Ewing Sarcoma	Bone Cancer	Bone	{}	BONE	2
+UCP	Purple	Undifferentiated Carcinoma of the Pancreas	Pancreatic Cancer	Pancreas	{}	PANCREAS	2
+GBC	Green	Gallbladder Cancer	Hepatobiliary Cancer	Biliary Tract	{}	BILIARY_TRACT	2
+JXG	LightSalmon	Disseminated Juvenile Xanthogranuloma	Histiocytosis	Myeloid	{}	HDCN	4
+DIA	Gray	Desmoplastic Infantile Astrocytoma	Miscellaneous Neuroepithelial Tumor	CNS/Brain	{}	MNET	3
+PBL	Gray	Pineoblastoma	Pineal Tumor	CNS/Brain	{}	PINT	3
+OVARY	LightBlue	Ovary/Fallopian Tube	Ovarian/Fallopian Tube Cancer	Ovary/Fallopian Tube	{}	TISSUE	1
+PTCA	Gray	Pituitary Carcinoma	Sellar Tumor	CNS/Brain	{}	SELT	3
+SNA	DarkRed	Sinonasal Adenocarcinoma	Head and Neck Cancer	Head and Neck	{}	OHNCA	3
+CML	LightSalmon	Chronic Myelogenous Leukemia	Myeloproliferative Neoplasms	Myeloid	{}	MPN	4
+UDDC	PeachPuff	Uterine Dedifferentiated Carcinoma	Endometrial Cancer	Uterus	{}	UCEC	3
+TSCST	Red	Sex Cord Stromal Tumor	Sex Cord Stromal Tumor	Testis	{}	TESTIS	2
+HDCS	LightYellow	Histiocytic Dendritic Cell Sarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	DCS	3
+MASC	HotPink	Metaplastic Adenosquamous Carcinoma	Breast Cancer	Breast	{}	EMBC	4
+AOAST	Gray	Anaplastic Oligoastrocytoma	Glioma	CNS/Brain	{}	DIFG	3
+APAD	SaddleBrown	Appendiceal Adenocarcinoma	Appendiceal Cancer	Bowel	{}	BOWEL	2
+LIVER	MediumSeaGreen	Liver	Liver Cancer	Liver	{}	TISSUE	1
+MCCE	Teal	Mixed Cervical Carcinoma	Cervical Cancer	Cervix	{}	CERVIX	2
+EMYOCA	DarkRed	Epithelial-Myoepithelial Carcinoma	Head and Neck Cancer	Head and Neck	{}	OHNCA	3
+LUAS	Gainsboro	Lung Adenosquamous Carcinoma	Non-Small Cell Lung Cancer	Lung	{}	NSCLC	3
+CEMN	Teal	Mesonephric Carcinoma	Cervical Cancer	Cervix	{}	CEAD	3
+HNMASC	DarkRed	Mammary Analogue Secretory Carcinoma of Salivary Gland Origin	Salivary Gland Cancer	Head and Neck	{}	SACA	3
+BLCLC	Gainsboro	Basaloid Large Cell Carcinoma of the Lung	Non-Small Cell Lung Cancer	Lung	{}	LCLC	4
+BIMT	Gray	Immature Teratoma	Germ Cell Tumor	CNS/Brain	{}	BGCT	3
+MPTLD	LimeGreen	Monomorphic PTLD (B- and T-/NK-cell types)	Posttransplant Lymphoproliferative Disorders	Lymphoid	{}	PTLD	4
+NHL	LimeGreen	Non-Hodgkin Lymphoma	Non-Hodgkin Lymphoma	Lymphoid	{}	LNM	3
+MNGLP	LightSalmon	Myeloid Neoplasms with Germ Line Predisposition	Myeloid Neoplasms with Germ Line Predisposition	Myeloid	{}	MNM	3
+SMZL	LimeGreen	Splenic Marginal Zone Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	MZL	6
+CDRCC	Orange	Collecting Duct Renal Cell Carcinoma	Renal Cell Carcinoma	Kidney	{}	NCCRCC	4
+LGCOS	White	Low-Grade Central Osteosarcoma	Bone Cancer	Bone	{}	OS	3
+CHM	PeachPuff	Complete Hydatidiform Mole	Gestational Trophoblastic Disease	Uterus	{}	MP	4
+RCSNOS	LightYellow	Round Cell Sarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+ISTAD	LightSkyBlue	Intestinal Type Stomach Adenocarcinoma	Esophagogastric Cancer	Esophagus/Stomach	{}	STAD	4
+GHCD	LimeGreen	Gamma Heavy-Chain Disease	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+SCEMU	Teal	Signet Ring Mucinous Carcinoma	Cervical Cancer	Cervix	{}	CEMU	4
+MCL	LimeGreen	Mantle Cell Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+MBT	Gray	Miscellaneous Brain Tumor	Miscellaneous Brain Tumor	CNS/Brain	{}	BRAIN	2
+PCLBCLLT	LimeGreen	Primary Cutaneous DLBCL	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+CMML0	LightSalmon	Chronic Myelomonocytic Leukemia-0	Myelodysplastic/Myeloproliferative Neoplasms	Myeloid	{}	CMML	5
+AMLGATA2MECOM	LightSalmon	AML with inv(3)(q21.3q26.2) or t(3;3)(q21.3;q26.2); GATA2	Leukemia	Myeloid	{}	AMLRGA	5
+UTUC	Yellow	Upper Tract Urothelial Carcinoma	Bladder Cancer	Bladder/Urinary Tract	{}	BLADDER	2
+GBAD	Green	Gallbladder Adenocarcinoma	Hepatobiliary Cancer	Biliary Tract	{}	GBC	3
+STSC	LightSkyBlue	Small Cell Carcinoma of the Stomach	Esophagogastric Cancer	Esophagus/Stomach	{}	EGC	3
+SCB	Yellow	Sarcomatoid Carcinoma of the Urinary Bladder	Bladder Cancer	Bladder/Urinary Tract	{}	BLADDER	2
+UMEC	PeachPuff	Uterine Mixed Endometrial Carcinoma	Endometrial Cancer	Uterus	{}	UCEC	3
+SCCRCC	Orange	Renal Clear Cell Carcinoma with Sarcomatoid Features	Renal Cell Carcinoma	Kidney	{}	CCRCC	4
+CMLBCRABL1	LightSalmon	Chronic Myeloid Leukemia	Myeloproliferative Neoplasms	Myeloid	{}	CML	5
+EPIS	LightYellow	Epithelioid Sarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+SCOAH	Gray	Spindle Cell Oncocytoma of the Adenohypophysis	Sellar Tumor	CNS/Brain	{}	SELT	3
+MCHSCNS	Gray	Mesenchymal Chondrosarcoma of the CNS	Miscellaneous Brain Tumor	CNS/Brain	{}	MBT	3
+AMLNOS	LightSalmon	AML	Leukemia	Myeloid	{}	AML	4
+BTOV	LightBlue	Brenner Tumor	Ovarian Cancer	Ovary/Fallopian Tube	{}	OVT	3
+ETANTR	Gray	Embryonal Tumor with Abundant Neuropil and True Rosettes	Embryonal Tumor	CNS/Brain	{}	EMBT	3
+BPT	HotPink	Benign Phyllodes Tumor of the Breast	Breast Sarcoma	Breast	{}	PT	4
+SAAD	DarkRed	Salivary Adenocarcinoma	Salivary Gland Cancer	Head and Neck	{}	SACA	3
+MDSSLD	LightSalmon	MDS with Single Lineage Dysplasia	Myelodysplastic Syndromes	Myeloid	{}	MDS	4
+FDCS	LightYellow	Follicular Dendritic Cell Sarcoma	Soft Tissue Sarcoma	Myeloid	{}	HDCN	4
+RGNT	Gray	Rosette-forming Glioneuronal Tumor of the Fourth Ventricle	Miscellaneous Neuroepithelial Tumor	CNS/Brain	{}	MNET	3
+WPSCC	Blue	Warty Penile Squamous Cell Carcinoma	Penile Cancer	Penis	{}	PSCC	3
+ACA	Purple	Adrenocortical Adenoma	Adrenocortical Adenoma	Adrenal Gland	{}	ADRENAL_GLAND	2
+ECD	LightSalmon	Erdheim-Chester Disease	Histiocytosis	Myeloid	{}	HDCN	4
+PAC	DarkRed	Polymorphous Adenocarcinoma	Salivary Gland Cancer	Head and Neck	{}	SACA	3
+SEBVTLC	LimeGreen	Systemic EBV Positive T-Cell Lymphoma of Childhood	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+UAS	PeachPuff	Uterine Adenosarcoma	Uterine Sarcoma	Uterus	{}	USARC	3
+LGFMS	LightYellow	Low-Grade Fibromyxoid Sarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+PB	Purple	Pancreatoblastoma	Pancreatic Cancer	Pancreas	{}	PANCREAS	2
+SEM	Red	Seminoma	Germ Cell Tumor	Testis	{}	TESTIS	2
+HSTCL	LimeGreen	Hepatosplenic T-cell Lymphoma	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+DIFG	Gray	Diffuse Glioma	Glioma	CNS/Brain	{}	BRAIN	2
+STAD	LightSkyBlue	Stomach Adenocarcinoma	Esophagogastric Cancer	Esophagus/Stomach	{}	EGC	3
+PCALCL	LimeGreen	Primary Cutaneous Anaplastic Large Cell Lymphoma	Mature T and NK Neoplasms	Lymphoid	{}	PCLPD	6
+DTE	Black	Desmoplastic Trichoepithelioma	Skin Cancer	Skin	{}	SKIN	2
+TESTIS	Red	Testis	Testicular Cancer	Testis	{}	TISSUE	1
+CAEXPA	DarkRed	Carcinoma ex Pleomorphic Adenoma	Salivary Gland Cancer	Head and Neck	{}	SACA	3
+POCA	Black	Porocarcinoma/Spiroadenocarcinoma	Skin Cancer	Skin	{}	SKIN	2
+UESL	MediumSeaGreen	Undifferentiated Embryonal Sarcoma of the Liver	Undifferentiated Embryonal Sarcoma of the Liver	Liver	{}	LIVER	2
+LCIS	HotPink	Breast Lobular Carcinoma In Situ	Breast Cancer	Breast	{}	BREAST	2
+ANSC	SaddleBrown	Anal Squamous Cell Carcinoma	Anal Cancer	Bowel	{}	BOWEL	2
+UTERUS	PeachPuff	Uterus	Uterine Cancer	Uterus	{}	TISSUE	1
+SCLG	Green	Squamous Cell Carcinoma of the Lacrimal Gland	Lacrimal Gland Tumor	Eye	{}	LGT	3
+OS	White	Osteosarcoma	Bone Cancer	Bone	{}	BONE	2
+PMF	LightSalmon	Primary Myelofibrosis	Myeloproliferative Neoplasms	Myeloid	{}	MPN	4
+MPALTNOS	LightSalmon	Mixed Phenotype Acute Leukemia	Leukemia	Myeloid	{}	ALAL	4
+SARCL	Gainsboro	Sarcomatoid Carcinoma of the Lung	Non-Small Cell Lung Cancer	Lung	{}	LUNG	2
+ODG	Gray	Oligodendroglioma	Glioma	CNS/Brain	{}	DIFG	3
+EP	LimeGreen	Extraosseous Plasmacytoma	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+ESS	PeachPuff	Endometrial Stromal Sarcoma	Uterine Sarcoma	Uterus	{}	USARC	3
+NFIB	Gray	Neurofibroma	Nerve Sheath Tumor	Peripheral Nervous System	{}	NST	3
+MRLS	LightYellow	Myxoid/Round-Cell Liposarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	LIPO	3
+GCTB	White	Giant Cell Tumor of Bone	Bone Cancer	Bone	{}	BONE	2
+GS	LightYellow	Glomangiosarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+GIST	LightYellow	Gastrointestinal Stromal Tumor	Gastrointestinal Stromal Tumor	Soft Tissue	{}	SOFT_TISSUE	2
+MZL	LimeGreen	Marginal Zone Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+MIXED	Black	Mixed Cancer Types	Cancer of Unknown Primary	Other	{}	OTHER	2
+BRAIN	Gray	CNS/Brain	CNS/Brain Cancer	CNS/Brain	{}	TISSUE	1
+PCM	LimeGreen	Plasma Cell Myeloma	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+SPIR	Black	Spiroma/Spiradenoma	Skin Cancer	Skin	{}	SKIN	2
+UCA	Yellow	Urethral Cancer	Bladder Cancer	Bladder/Urinary Tract	{}	BLADDER	2
+THYROID	Teal	Thyroid	Thyroid Cancer	Thyroid	{}	TISSUE	1
+MPT	HotPink	Malignant Phyllodes Tumor of the Breast	Breast Sarcoma	Breast	{}	PT	4
+MLNPDGFRB	LightSalmon	Myeloid/Lymphoid Neoplasms with PDGFRB Rearrangement	Leukemia	Myeloid	{}	MLNER	4
+PSTT	PeachPuff	Placental Site Trophoblastic Tumor	Gestational Trophoblastic Disease	Uterus	{}	GTD	3
+BRCNOS	HotPink	Breast Invasive Carcinoma	Breast Cancer	Breast	{}	BRCA	3
+PPB	Gainsboro	Pleuropulmonary Blastoma	Non-Small Cell Lung Cancer	Lung	{}	LUNG	2
+OSMCA	LightBlue	Ovarian Seromucinous Carcinoma	Ovarian Cancer	Ovary/Fallopian Tube	{}	OVT	3
+BFN	HotPink	Breast Fibroepithelial Neoplasms	Breast Sarcoma	Breast	{}	BREAST	2
+LCS	LightSalmon	Langerhans Cell Sarcoma	Histiocytosis	Myeloid	{}	HDCN	4
+SCOS	White	Small Cell Osteosarcoma	Bone Cancer	Bone	{}	OS	3
+SMAHN	LightSalmon	Systemic Mastocytosis with an Associated Hematological Neoplasm	Mastocytosis	Myeloid	{}	SM	5
+ANKL	LimeGreen	Aggressive NK-Cell Leukemia	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+AA	LightYellow	Aggressive Angiomyxoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+GBASC	Green	Adenosquamous Carcinoma of the Gallbladder	Hepatobiliary Cancer	Biliary Tract	{}	GBC	3
+LRCHL	LimeGreen	Lymphocyte-Rich Classical Hodgkin Lymphoma	Hodgkin Lymphoma	Lymphoid	{}	CHL	5
+ATRT	Gray	Atypical Teratoid/Rhabdoid Tumor	Embryonal Tumor	CNS/Brain	{}	EMBT	3
+CLPDNK	LimeGreen	Chronic Lymphoproliferative Disorder of NK Cells	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+PRNE	Cyan	Prostate Neuroendocrine Carcinoma	Prostate Cancer	Prostate	{}	PROSTATE	2
+GB	Gray	Glioblastoma	Glioma	CNS/Brain	{}	DIFG	3
+LM	LightYellow	Leiomyoma	Soft Tissue Cancer	Soft Tissue	{}	SOFT_TISSUE	2
+FT	LightBlue	Fibrothecoma	Sex Cord Stromal Tumor	Ovary/Fallopian Tube	{}	SCST	3
+GNG	Gray	Ganglioglioma	Glioma	CNS/Brain	{}	ENCG	3
+DFL	LimeGreen	Duodenal-Type Follicular Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	FL	6
+AMLMD	LightSalmon	AML with Minimal Differentiation	Leukemia	Myeloid	{}	AMLNOS	5
+MPALBNOS	LightSalmon	Mixed Phenotype Acute Leukemia	Leukemia	Myeloid	{}	ALAL	4
+SARCNOS	LightYellow	Sarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+FA	HotPink	Fibroadenoma	Breast Sarcoma	Breast	{}	BFN	3
+MHCD	LimeGreen	Mu Heavy-Chain Disease	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+BLAD	Yellow	Bladder Adenocarcinoma	Bladder Cancer	Bladder/Urinary Tract	{}	BLADDER	2
+EOV	LightBlue	Endometrioid Ovarian Cancer	Ovarian Cancer	Ovary/Fallopian Tube	{}	OVT	3
+STMYEC	LightYellow	Soft Tissue Myoepithelial Carcinoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+AGNG	Gray	Anaplastic Ganglioglioma	Glioma	CNS/Brain	{}	ENCG	3
+RCYC	LightSalmon	Refractory Cytopenia of Childhood	Myelodysplastic Syndromes	Myeloid	{}	MDS	4
+LYP	LimeGreen	Lymphomatoid Papulosis	Mature T and NK Neoplasms	Lymphoid	{}	PCLPD	6
+MSCC	HotPink	Metaplastic Squamous Cell Carcinoma	Breast Cancer	Breast	{}	EMBC	4
+SOFT_TISSUE	LightYellow	Soft Tissue	Soft Tissue Cancer	Soft Tissue	{}	TISSUE	1
+PTHC	DarkRed	Parathyroid Carcinoma	Parathyroid Cancer	Head and Neck	{}	PTH	3
+CEAS	Teal	Cervical Adenosquamous Carcinoma	Cervical Cancer	Cervix	{}	CERVIX	2
+THYMUS	Purple	Thymus	Thymic Cancer	Thymus	{}	TISSUE	1
+UCEC	PeachPuff	Endometrial Carcinoma	Endometrial Cancer	Uterus	{}	UTERUS	2
+BLLBCRABL1L	LimeGreen	B-Lymphoblastic Leukemia/Lymphoma	B-Lymphoblastic Leukemia/Lymphoma	Lymphoid	{}	BLLRGA	5
+CSCLC	Gainsboro	Combined Small Cell Lung Carcinoma	Small Cell Lung Cancer	Lung	{}	LUNG	2
+PAMPCA	Purple	Pancreatobiliary Ampullary Carcinoma	Ampullary Cancer	Ampulla of Vater	{}	AMPCA	3
+MLNPCM1JAK2	LightSalmon	Myeloid/Lymphoid Neoplasms with PCM1-JAK2	Leukemia	Myeloid	{}	MLNER	4
+JMML	LightSalmon	Juvenile Myelomonocytic Leukemia	Myelodysplastic/Myeloproliferative Neoplasms	Myeloid	{}	MDS/MPN	4
+MLNER	LightSalmon	Myeloid/Lymphoid Neoplasms with Eosinophilia and Rearrangement of  PDGFRA/PDGFRB or FGFR1 or with PCM1-JAK2	Leukemia	Myeloid	{}	MNM	3
+PCGDTCL	LimeGreen	Primary Cutaneous Gamma Delta T-Cell Lymphoma	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+ET	LightSalmon	Essential Thrombocythemia	Myeloproliferative Neoplasms	Myeloid	{}	MPN	4
+PHM	PeachPuff	Partial Hydatidiform Mole	Gestational Trophoblastic Disease	Uterus	{}	MP	4
+CPC	Gray	Choroid Plexus Carcinoma	Choroid Plexus Tumor	CNS/Brain	{}	CPT	3
+SKCM	Black	Cutaneous Melanoma	Melanoma	Skin	{}	MEL	3
+ACC	Purple	Adrenocortical Carcinoma	Adrenocortical Carcinoma	Adrenal Gland	{}	ADRENAL_GLAND	2
+ADNOS	Black	Adenocarcinoma	Cancer of Unknown Primary	Other	{}	CUP	3
+GCCAP	SaddleBrown	Goblet Cell Adenocarcinoma of the Appendix	Appendiceal Cancer	Bowel	{}	APAD	3
+TRCC	Orange	Translocation-Associated Renal Cell Carcinoma	Renal Cell Carcinoma	Kidney	{}	NCCRCC	4
+SCCNOS	Black	Squamous Cell Carcinoma	Cancer of Unknown Primary	Other	{}	CUP	3
+SCSRMS	LightYellow	Spindle Cell/Sclerosing Rhabdomyosarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	RMS	3
+CACC	Teal	Cervical Adenoid Cystic Carcinoma	Cervical Cancer	Cervix	{}	CERVIX	2
+IHM	PeachPuff	Invasive Hydatidiform Mole	Gestational Trophoblastic Disease	Uterus	{}	MP	4
+HGBCL	LimeGreen	High-Grade B-Cell Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+PLEURA	Blue	Pleura	Pleural Cancer	Pleura	{}	TISSUE	1
+VOEC	Purple	Embryonal Carcinoma	Germ Cell Tumor	Vulva/Vagina	{}	VGCT	3
+MDSU	LightSalmon	MDS	Myelodysplastic Syndromes	Myeloid	{}	MDS	4
+PPTID	Gray	Pineal Parenchymal Tumor of Intermediate Differentiation	Pineal Tumor	CNS/Brain	{}	PINT	3
+CCOV	LightBlue	Clear Cell Ovarian Cancer	Ovarian Cancer	Ovary/Fallopian Tube	{}	OVT	3
+CUP	Black	Cancer of Unknown Primary	Cancer of Unknown Primary	Other	{}	OTHER	2
+GNOS	Gray	Glioma	Glioma	CNS/Brain	{}	DIFG	3
+RAML	Orange	Renal Angiomyolipoma	Renal Cell Carcinoma	Kidney	{}	NCCRCC	4
+HVLL	LimeGreen	Hydroa Vacciniforme Like Lymphoproliferative Disorder	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+OTHER	Black	Other	Other Cancer	Other	{}	TISSUE	1
+OCSC	DarkRed	Oral Cavity Squamous Cell Carcinoma	Head and Neck Cancer	Head and Neck	{}	HNSC	3
+SDRPL	LimeGreen	Splenic Diffuse Red Pulp Small B-Cell Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	SBLU	6
+ANGS	LightYellow	Angiosarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+GEJ	LightSkyBlue	Adenocarcinoma of the Gastroesophageal Junction	Esophagogastric Cancer	Esophagus/Stomach	{}	EGC	3
+CPP	Gray	Choroid Plexus Papilloma	Choroid Plexus Tumor	CNS/Brain	{}	CPT	3
+IVBCL	LimeGreen	Intravascular Large B-Cell Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+NLPHL	LimeGreen	Nodular Lymphocyte-Predominant Hodgkin Lymphoma	Hodgkin Lymphoma	Lymphoid	{}	HL	4
+THYC	Purple	Thymic Carcinoma	Thymic Tumor	Thymus	{}	TET	3
+ILC	HotPink	Breast Invasive Lobular Carcinoma	Breast Cancer	Breast	{}	BRCA	3
+PCNSL	LimeGreen	Primary DLBCL of the central nervous system	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+HL	LimeGreen	Hodgkin Lymphoma	Hodgkin Lymphoma	Lymphoid	{}	LNM	3
+LAMN	SaddleBrown	Low-grade Appendiceal Mucinous Neoplasm	Appendiceal Cancer	Bowel	{}	BOWEL	2
+PBT	Gray	Primary Brain Tumor	Miscellaneous Brain Tumor	CNS/Brain	{}	MBT	3
+ULM	PeachPuff	Uterine Leiomyoma	Uterine Sarcoma	Uterus	{}	USMT	4
+ALCL	LimeGreen	Anaplastic Large Cell Lymphoma	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+AMPCA	Purple	Ampullary Carcinoma	Ampullary Cancer	Ampulla of Vater	{}	AMPULLA_OF_VATER	2
+RNET	Orange	Renal Neuroendocrine Tumor	Renal Neuroendocrine Tumor	Kidney	{}	KIDNEY	2
+ALAL	LightSalmon	Acute Leukemias of Ambiguous Lineage	Leukemia	Myeloid	{}	MNM	3
+DNT	Gray	Dysembryoplastic Neuroepithelial Tumor	Glioma	CNS/Brain	{}	ENCG	3
+GRCT	LightBlue	Granulosa Cell Tumor	Sex Cord Stromal Tumor	Ovary/Fallopian Tube	{}	SCST	3
+PENIS	Blue	Penis	Penile Cancer	Penis	{}	TISSUE	1
+ACYC	DarkRed	Adenoid Cystic Carcinoma	Salivary Gland Cancer	Head and Neck	{}	SACA	3
+VPSCC	Blue	Verrucous Penile Squamous Cell Carcinoma	Penile Cancer	Penis	{}	PSCC	3
+MCCHL	LimeGreen	Mixed Cellularity Classical Hodgkin Lymphoma	Hodgkin Lymphoma	Lymphoid	{}	CHL	5
+CEEN	Teal	Cervical Endometrioid Carcinoma	Cervical Cancer	Cervix	{}	CEAD	3
+CHS	White	Chondrosarcoma	Bone Cancer	Bone	{}	BONE	2
+BLLTCF3PBX1	LimeGreen	B-Lymphoblastic Leukemia/Lymphoma with t(1;19)(q23;p13.3);TCF3-PBX1	B-Lymphoblastic Leukemia/Lymphoma	Lymphoid	{}	BLLRGA	5
+BEC	Gray	Embryonal Carcinoma	Germ Cell Tumor	CNS/Brain	{}	BGCT	3
+HGGNOS	Gray	High-Grade Glioma	Glioma	CNS/Brain	{}	DIFG	3
+CPT	Gray	Choroid Plexus Tumor	Choroid Plexus Tumor	CNS/Brain	{}	BRAIN	2
+HPHSC	DarkRed	Hypopharynx Squamous Cell Carcinoma	Head and Neck Cancer	Head and Neck	{}	HNSC	3
+OAT	Teal	Oncocytic Adenoma of the Thyroid	Thyroid Cancer	Thyroid	{}	THYROID	2
+LIHB	MediumSeaGreen	Hepatoblastoma	Hepatobiliary Cancer	Liver	{}	LIVER	2
+MNGT	Gray	Meningothelial Tumor	CNS Cancer	CNS/Brain	{}	BRAIN	2
+IMPTLD	LimeGreen	Infectious Mononucleosis PTLD	Posttransplant Lymphoproliferative Disorders	Lymphoid	{}	PTLD	4
+CCBOV	LightBlue	Clear Cell Borderline Ovarian Tumor	Ovarian Cancer	Ovary/Fallopian Tube	{}	OVT	3
+DIPG	Gray	Diffuse Intrinsic Pontine Glioma	Glioma	CNS/Brain	{}	DIFG	3
+USMT	PeachPuff	Uterine Smooth Muscle Tumor	Uterine Sarcoma	Uterus	{}	USARC	3
+PMFPES	LightSalmon	Primary Myelofibrosis	Myeloproliferative Neoplasms	Myeloid	{}	PMF	5
+ULMS	PeachPuff	Uterine Leiomyosarcoma	Uterine Sarcoma	Uterus	{}	USMT	4
+GRC	LightSkyBlue	Gastric Remnant Adenocarcinoma	Esophagogastric Cancer	Esophagus/Stomach	{}	EGC	3
+OUSARC	PeachPuff	Uterine Sarcoma	Uterine Sarcoma	Uterus	{}	USARC	3
+DLBCLCI	LimeGreen	DLBCL Associated with Chronic Inflammation	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+CENE	Teal	Cervical Neuroendocrine Tumor	Cervical Cancer	Cervix	{}	CERVIX	2
+LUCA	Gainsboro	Lung Carcinoid	Non-Small Cell Lung Cancer	Lung	{}	LNET	3
+TEOS	White	Telangiectatic Osteosarcoma	Bone Cancer	Bone	{}	OS	3
+MBEN	Gray	Medulloblastoma with Extensive Nodularity	Embryonal Tumor	CNS/Brain	{}	EMBT	3
+THYM	Purple	Thymoma	Thymic Tumor	Thymus	{}	TET	3
+ACLG	Green	Adenoid Cystic Carcinoma of the Lacrimal Gland	Lacrimal Gland Tumor	Eye	{}	LGT	3
+THFO	Teal	Follicular Thyroid Cancer	Thyroid Cancer	Thyroid	{}	WDTC	3
+EPDCA	LightSkyBlue	Esophageal Poorly Differentiated Carcinoma	Esophagogastric Cancer	Esophagus/Stomach	{}	STOMACH	2
+ADMA	White	Adamantinoma	Bone Cancer	Bone	{}	BONE	2
+PECOMA	LightYellow	Perivascular Epithelioid Cell Tumor	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+MDSEB1	LightSalmon	MDS with excess blasts-1	Myelodysplastic Syndromes	Myeloid	{}	MDSEB	5
+UUS	PeachPuff	Undifferentiated Uterine Sarcoma	Uterine Sarcoma	Uterus	{}	USARC	3
+BLLNOS	LimeGreen	B-Lymphoblastic Leukemia/Lymphoma	B-Lymphoblastic Leukemia/Lymphoma	Lymphoid	{}	BLL	4
+ACCC	DarkRed	Acinic Cell Carcinoma	Salivary Gland Cancer	Head and Neck	{}	SACA	3
+SKCN	Black	Congenital Nevus	Melanoma	Skin	{}	MEL	3
+BLLKMT2A	LimeGreen	B-Lymphoblastic Leukemia/Lymphoma with t(v;11q23.3);KMT2A Rearranged	B-Lymphoblastic Leukemia/Lymphoma	Lymphoid	{}	BLLRGA	5
+MMBC	HotPink	Mixed Type Metaplastic Breast Cancer	Breast Cancer	Breast	{}	MBC	3
+GN	Gray	Ganglioneuroma	Peripheral Nervous System	Peripheral Nervous System	{}	PNS	2
+SCGBM	Gray	Small Cell Glioblastoma	Glioma	CNS/Brain	{}	GB	4
+PCAECTCL	LimeGreen	Primary Cutaneous CD8 Positive Aggressive Epidermotropic Cytotoxic T-Cell Lymphoma	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+PGNT	Gray	Papillary Glioneuronal Tumor	Miscellaneous Neuroepithelial Tumor	CNS/Brain	{}	MNET	3
+ESCC	LightSkyBlue	Esophageal Squamous Cell Carcinoma	Esophagogastric Cancer	Esophagus/Stomach	{}	STOMACH	2
+SBMOV	LightBlue	Serous Borderline Ovarian Tumor	Ovarian Cancer	Ovary/Fallopian Tube	{}	OVT	3
+IMMC	HotPink	Breast Invasive Mixed Mucinous Carcinoma	Breast Cancer	Breast	{}	BRCA	3
+MS	LightSalmon	Myeloid Sarcoma	Leukemia	Myeloid	{}	AML	4
+RAS	LightYellow	Radiation-Associated Sarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+SBWDNET	SaddleBrown	Small Bowel Well-Differentiated Neuroendocrine Tumor	Gastrointestinal Neuroendocrine Tumor	Bowel	{}	GINET	3
+MF	LightYellow	Myofibroma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+LIAS	MediumSeaGreen	Liver Angiosarcoma	Hepatobiliary Cancer	Liver	{}	LIVER	2
+AMLNPM1	LightSalmon	AML with Mutated NPM1	Leukemia	Myeloid	{}	AMLRGA	5
+UCCC	PeachPuff	Uterine Clear Cell Carcinoma	Endometrial Cancer	Uterus	{}	UCEC	3
+AMLRUNX1RUNX1T1	LightSalmon	AML with t(8;21)(q22;q22.1);RUNX1-RUNX1T1	Leukemia	Myeloid	{}	AMLRGA	5
+VYST	Purple	Yolk Sac Tumor	Germ Cell Tumor	Vulva/Vagina	{}	VGCT	3
+HPCCNS	Gray	Hemangiopericytoma of the Central Nervous System	CNS Cancer	CNS/Brain	{}	MNGT	3
+OUTT	PeachPuff	Other Uterine Tumor	Endometrial Cancer	Uterus	{}	UTERUS	2
+IDCS	LightYellow	Interdigitating Dendritic Cell Sarcoma	Soft Tissue Sarcoma	Myeloid	{}	HDCN	4
+LGNET	Gray	Low-Grade Neuroepithelial Tumor	Miscellaneous Brain Tumor	CNS/Brain	{}	MBT	3
+PLEMESO	Blue	Pleural Mesothelioma	Mesothelioma	Pleura	{}	PLMESO	3
+HCCIHCH	MediumSeaGreen	Hepatocellular Carcinoma plus Intrahepatic Cholangiocarcinoma	Hepatobiliary Cancer	Liver	{}	LIVER	2
+BREAST	HotPink	Breast	Breast Cancer	Breast	{}	TISSUE	1
+LIAD	MediumSeaGreen	Hepatocellular Adenoma	Hepatobiliary Cancer	Liver	{}	LIVER	2
+MDSMPNRST	LightSalmon	MDS/MPN with Ring Sideroblasts and Thrombocytosis	Myelodysplastic/Myeloproliferative Neoplasms	Myeloid	{}	MDS/MPN	4
+ETT	PeachPuff	Epithelioid Trophoblastic Tumor	Gestational Trophoblastic Disease	Uterus	{}	GTD	3
+IMT	LightYellow	Inflammatory Myofibroblastic Tumor	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+PDC	Black	Poorly Differentiated Carcinoma	Cancer of Unknown Primary	Other	{}	CUP	3
+AMLRUNX1	LightSalmon	AML with Mutated RUNX1	Leukemia	Myeloid	{}	AMLRGA	5
+PV	LightSalmon	Polycythemia Vera	Myeloproliferative Neoplasms	Myeloid	{}	MPN	4
+SBC	SaddleBrown	Small Bowel Cancer	Small Bowel Cancer	Bowel	{}	BOWEL	2
+CAIS	SaddleBrown	Colon Adenocarcinoma In Situ	Colorectal Cancer	Bowel	{}	COADREAD	3
+MXOV	LightBlue	Mixed Ovarian Carcinoma	Ovarian Cancer	Ovary/Fallopian Tube	{}	OVT	3
+MUP	Black	Melanoma of Unknown Primary	Melanoma	Skin	{}	MEL	3
+JSCB	HotPink	Juvenile Secretory Carcinoma of the Breast	Breast Cancer	Breast	{}	BREAST	2
+UCU	Yellow	Urethral Urothelial Carcinoma	Bladder Cancer	Bladder/Urinary Tract	{}	UCA	3
+HGNES	LightSkyBlue	High-Grade Neuroendocrine Carcinoma of the Stomach	Gastrointestinal Neuroendocrine Tumors of the Esophagus/Stomach	Esophagus/Stomach	{}	GINETES	3
+ISM	LightSalmon	Indolent Systemic Mastocytosis	Mastocytosis	Myeloid	{}	SM	5
+MATPL	LightSalmon	Myeloid Atypical	Blood Cancer	Myeloid	{}	MYELOID	2
+MPNST	Gray	Malignant Peripheral Nerve Sheath Tumor	Nerve Sheath Tumor	Peripheral Nervous System	{}	NST	3
+PTPR	Gray	Papillary Tumor of the Pineal Region	Pineal Tumor	CNS/Brain	{}	PINT	3
+PCATCL	LimeGreen	Primary Cutaneous Acral CD8 Positive T-Cell Lymphoma	Mature T and NK Neoplasms	Lymphoid	{}	MTNN	5
+PCFCL	LimeGreen	Primary Cutaneous Follicle Center Lymphoma	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+DA	SaddleBrown	Duodenal Adenocarcinoma	Small Bowel Cancer	Bowel	{}	SBC	3
+CMML1	LightSalmon	Chronic Myelomonocytic Leukemia-1	Myelodysplastic/Myeloproliferative Neoplasms	Myeloid	{}	CMML	5
+ABL	LightSalmon	Acute Basophilic Leukemia	Leukemia	Myeloid	{}	AMLNOS	5
+MYCHS	White	Myxoid Chondrosarcoma	Bone Cancer	Bone	{}	CHS	3
+CCSK	Orange	Clear Cell Sarcoma of Kidney	Clear Cell Sarcoma of Kidney	Kidney	{}	KIDNEY	2
+MCS	HotPink	Metaplastic Carcinosarcoma	Breast Cancer	Breast	{}	MMBC	4
+PLBMESO	Blue	Pleural Mesothelioma	Mesothelioma	Pleura	{}	PLMESO	3
+MYEC	DarkRed	Myoepithelial Carcinoma	Salivary Gland Cancer	Head and Neck	{}	SACA	3
+ITPN	Purple	Intraductal Tubulopapillary Neoplasm	Pancreatic Cancer	Pancreas	{}	PACT	3
+MIDD	LimeGreen	Monoclonal Immunoglobulin Deposition Diseases	Mature B-Cell Neoplasms	Lymphoid	{}	MBN	5
+CEGCC	Teal	Glassy Cell Carcinoma of the Cervix	Cervical Cancer	Cervix	{}	CERVIX	2
+CEMU	Teal	Mucinous Carcinoma	Cervical Cancer	Cervix	{}	CEAD	3
+MPNU	LightSalmon	Myeloproliferative Neoplasms	Myeloproliferative Neoplasms	Myeloid	{}	MPN	4
+EPMT	Gray	Ependymomal Tumor	CNS Cancer	CNS/Brain	{}	BRAIN	2
+GCT	Gray	Granular Cell Tumor	Sellar Tumor	CNS/Brain	{}	SELT	3
+PEOS	White	Periosteal Osteosarcoma	Bone Cancer	Bone	{}	OS	3
+ACML	LightSalmon	Atypical Chronic Myeloid Leukemia	Myelodysplastic/Myeloproliferative Neoplasms	Myeloid	{}	MDS/MPN	4
+SKAC	Black	Skin Adnexal Carcinoma	Skin Cancer	Skin	{}	SKIN	2
+DCS	LightYellow	Dendritic Cell Sarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	SOFT_TISSUE	2
+CCE	Gray	Clear Cell Ependymoma	CNS Cancer	CNS/Brain	{}	EPMT	3
+EMBC	HotPink	Epithelial Type Metaplastic Breast Cancer	Breast Cancer	Breast	{}	MBC	3
+MDSRSMD	LightSalmon	MDS with Ring Sideroblasts and Multilineage Dysplasia	Myelodysplastic Syndromes	Myeloid	{}	MDSRS	5
+BCC	Black	Basal Cell Carcinoma	Skin Cancer	Skin	{}	SKIN	2
+ISFN	LimeGreen	In Situ Follicular Neoplasia	Mature B-Cell Neoplasms	Lymphoid	{}	FL	6
+UPECOMA	PeachPuff	Uterine Perivascular Epithelioid Cell Tumor	Uterine Sarcoma	Uterus	{}	USARC	3
+MPRDS	LightSalmon	Myeloid Proliferations Related to Down Syndrome	Leukemia	Myeloid	{}	AML	4
+SCRMS	LightYellow	Spindle Cell Rhabdomyosarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	RMS	3
+MCN	Purple	Mucinous Cystic Neoplasm	Pancreatic Cancer	Pancreas	{}	PACT	3
+AMBL	Gray	Large Cell/Anaplastic Medulloblastoma	Embryonal Tumor	CNS/Brain	{}	EMBT	3
+CHGL	Gray	Chordoid Glioma of the Third Ventricle	Miscellaneous Neuroepithelial Tumor	CNS/Brain	{}	MNET	3
+RCC	Orange	Renal Cell Carcinoma	Renal Cell Carcinoma	Kidney	{}	KIDNEY	2
+MGUSIGM	LimeGreen	IgM	Mature B-Cell Neoplasms	Lymphoid	{}	MGUS	6
+BRCANOS	HotPink	Breast Invasive Cancer	Breast Cancer	Breast	{}	BRCA	3
+VULVA	Purple	Vulva/Vagina	Vulvar/Vaginal Cancer	Vulva/Vagina	{}	TISSUE	1
+SSRCC	LightSkyBlue	Signet Ring Cell Carcinoma of the Stomach	Esophagogastric Cancer	Esophagus/Stomach	{}	USTAD	4
+DASTR	Gray	Diffuse Astrocytoma	Glioma	CNS/Brain	{}	DIFG	3
+MSTAD	LightSkyBlue	Mucinous Stomach Adenocarcinoma	Esophagogastric Cancer	Esophagus/Stomach	{}	STAD	4
+ETPLL	LimeGreen	Early T-Cell Precursor Lymphoblastic Leukemia	T-Lymphoblastic Leukemia/Lymphoma	Lymphoid	{}	TLL	4
+PTES	LightYellow	Proximal-Type Epithelioid Sarcoma	Soft Tissue Sarcoma	Soft Tissue	{}	EPIS	3
+PPM	Gray	Papillary Meningioma	CNS Cancer	CNS/Brain	{}	MNGT	3
+VSC	Purple	Squamous Cell Carcinoma of the Vulva/Vagina	Vaginal Cancer	Vulva/Vagina	{}	VULVA	2
+OOVC	LightBlue	Ovarian Cancer	Ovarian Cancer	Ovary/Fallopian Tube	{}	OVARY	2
+LCH	LightSalmon	Langerhans Cell Histiocytosis	Histiocytosis	Myeloid	{}	HDCN	4
+PSEC	Green	Peritoneal Serous Carcinoma	Peritoneal Cancer	Peritoneum	{}	PERITONEUM	2
+AM	LightSalmon	AML with Maturation	Leukemia	Myeloid	{}	AMLNOS	5
